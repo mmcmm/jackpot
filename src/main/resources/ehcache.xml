@@ -46,5 +46,9 @@
            timeToLiveSeconds="3600">
     </cache>
 
+    <cache name="com.ninjaskins.website.domain.Jackpot"
+           timeToLiveSeconds="3600">
+    </cache>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </ehcache>
