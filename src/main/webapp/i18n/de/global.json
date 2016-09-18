@@ -6,11 +6,18 @@
             "home": "Startseite",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "Entitäten",
+                "main": "Geschichte",
+                "userProfile": "User Profile",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
                 "main": "Zugang",
+                "profile": "Profil",
+                "deposit": "Anzahlung",
+                "addcredits": "In Credits",
+                "credits": "Credits",
+                "activity": "Aktivität",
+                "creditdeposits": "Kredit Einlagen",
                 "settings": "Einstellungen",
                 "password": "Passwort",
                 "sessions": "Sitzungen",
@@ -19,7 +26,7 @@
                 "register": "Registrierung"
             },
             "admin": {
-                "main": "Administration",
+                "main": "Admin",
                 "userManagement": "Benutzerverwaltung",
                 "tracker": "Benutzer Aktivitäten",
                 "metrics": "Metriken",
@@ -45,7 +52,7 @@
         },
         "messages": {
             "info": {
-                "authenticated": "Wenn Sie sich <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">anmelden</a> möchten, versuchen Sie es mit <br/>- Administrator (Name=\"admin\" und Passwort=\"admin\")<br/>- Benutzer (Name=\"user\" und Passwort=\"user\").",
+                "signin": "Bitte <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">anmelden</a>!",
                 "register": "Sie haben noch keinen Zugang? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">Registrieren Sie sich</a>"
             },
             "error": {
@@ -117,7 +124,12 @@
         "Size": "Feld {{fieldName}} erfüllt nicht die minimalen/maximalen Voraussetzungen!",
         "userexists": "Benutzername bereits vergeben!",
         "emailexists": "E-mail wird bereits verwendet!",
-        "idexists": "Ein neuer {{entityName}} kann noch keine ID haben"
+        "idexists": "Ein neuer {{entityName}} kann noch keine ID haben",
+        "profilenotexists": "Bitte füllen Sie Ihren Namen und Profildaten  vor Ablegen!",
+        "internalServerError": "Interner Serverfehler!"
     },
-    "footer": "Dies ist Ihre Fußzeile"
+    "footer": {
+        "privacy": "Datenschutz-Bestimmungen",
+        "terms": "Terms & Bedingungen"
+    }
 }

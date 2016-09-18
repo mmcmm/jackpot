@@ -93,10 +93,96 @@ public class UserDTO {
             "login='" + login + '\'' +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
+            ", addressStreet='" + addressStreet + '\'' +
+            ", addressPostal='" + addressPostal + '\'' +
+            ", addressCity='" + addressCity + '\'' +
+            ", addressCountry='" + addressCountry + '\'' +
+            ", birthDay='" + birthDay + '\'' +
+            ", birthMonth='" + birthMonth + '\'' +
+            ", birthYear='" + birthYear + '\'' +
+            ", agreeTerms='" + agreeTerms + '\'' +
+            ", yearsOld18='" + yearsOld18 + '\'' +
             ", email='" + email + '\'' +
             ", activated=" + activated +
             ", langKey='" + langKey + '\'' +
             ", authorities=" + authorities +
             "}";
+    }
+
+    // next custom profile fields
+
+    public UserDTO setProfileInfo(User user, String country)
+    {
+        this.addressStreet = user.getAddressStreet();
+        this.addressPostal = user.getAddressPostal();
+        this.addressCity = user.getAddressCity();
+        this.addressCountry = user.getAddressCountry() == null ? country : user.getAddressCountry();
+        this.birthDay = user.getBirthDay();
+        this.birthMonth = user.getBirthMonth();
+        this.birthYear = user.getBirthYear();
+        this.agreeTerms = user.isAgreeTerms();
+        this.yearsOld18 = user.isYearsOld18();
+        return this;
+    }
+
+    @Size(min = 2, max = 2)
+    public String birthDay;
+
+    @Size(min = 2, max = 2)
+    public String birthMonth;
+
+    @Size(min = 4, max = 4)
+    public String birthYear;
+
+    @Size(max = 95)
+    public String addressStreet;
+
+    @Size(max = 11)
+    public String addressPostal;
+
+    @Size(max = 65)
+    public String addressCity;
+
+    @Size(min = 2, max = 2)
+    public String addressCountry;
+
+    public Boolean agreeTerms;
+
+    public Boolean yearsOld18;
+
+    public String getBirthDay() {
+        return birthDay;
+    }
+
+    public String getBirthMonth() {
+        return birthMonth;
+    }
+
+    public String getBirthYear() {
+        return birthYear;
+    }
+
+    public String getAddressStreet() {
+        return addressStreet;
+    }
+
+    public String getAddressPostal() {
+        return addressPostal;
+    }
+
+    public String getAddressCity() {
+        return addressCity;
+    }
+
+    public String getAddressCountry() {
+        return addressCountry;
+    }
+
+    public Boolean isAgreeTerms() {
+        return agreeTerms;
+    }
+
+    public Boolean isYearsOld18() {
+        return yearsOld18;
     }
 }

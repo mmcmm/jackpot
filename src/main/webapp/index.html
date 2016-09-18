@@ -22,7 +22,7 @@
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <page-ribbon></page-ribbon>
+
     <div ui-view="navbar" ng-cloak></div>
     <div class="container">
         <div class="well" ui-view="content">
@@ -30,7 +30,17 @@
         </div>
 
         <div class="footer" ng-cloak>
-            <p data-translate="footer">This is your footer</p>
+            <div class="container">
+                <ul id="social-footer-icons" class="pull-right list-inline">
+                    <li><a id="tw" rel="me" target="_blank" href="#">Twitter</a></li>
+                    <li><a id="fb" rel="me" target="_blank" href="#">Facebook</a></li>
+                    <li><a id="plus" rel="me" target="_blank" href="#">Google+</a></li>
+                    <li><a id="rss" rel="me" target="_blank" href="#">RSS</a></li>
+                </ul>
+                <p>© 2016 NinjaSkins.com · <a translate="footer.privacy" href="/privacy">Privacy Policy</a> ·
+                    <a translate="footer.terms" href="/terms">Terms and Conditions</a>
+                </p>
+            </div>
         </div>
     </div>
 

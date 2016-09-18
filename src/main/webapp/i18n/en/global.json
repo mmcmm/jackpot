@@ -6,11 +6,18 @@
             "home": "Home",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "Entities",
+                "main": "History",
+                "userProfile": "User Profile",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
                 "main": "Account",
+                "profile": "Profile",
+                "deposit": "Deposit",
+                "addcredits": "Add Credits",
+                "credits": "Credits",
+                "activity": "Activity",
+                "creditdeposits": "Credit Deposits",
                 "settings": "Settings",
                 "password": "Password",
                 "sessions": "Sessions",
@@ -19,7 +26,7 @@
                 "register": "Register"
             },
             "admin": {
-                "main": "Administration",
+                "main": "Admin",
                 "userManagement": "User management",
                 "tracker": "User tracker",
                 "metrics": "Metrics",
@@ -45,7 +52,7 @@
         },
         "messages": {
             "info": {
-                "authenticated": "If you want to <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">sign in</a>, you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\").",
+                "signin": "Please <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">sign in</a>!",
                 "register": "You don't have an account yet? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">Register a new account</a>"
             },
             "error": {
@@ -117,7 +124,12 @@
         "Size": "Field {{ fieldName }} does not meet min/max size requirements!",
         "userexists": "Login name already used!",
         "emailexists": "E-mail is already in use!",
-        "idexists": "A new {{ entityName }} cannot already have an ID"
+        "idexists": "A new {{ entityName }} cannot already have an ID",
+        "profilenotexists": "Please fill out your Name and Profile info before depositing!",
+        "internalServerError": "Internal Server Error!"
     },
-    "footer": "This is your footer"
+    "footer": {
+        "privacy": "Privacy Policy",
+        "terms": "Terms & Conditions"
+    }
 }

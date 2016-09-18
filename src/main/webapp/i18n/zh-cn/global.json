@@ -6,11 +6,18 @@
             "home": "首页",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "数据",
+                "main": "历史",
+                "userProfile": "User Profile",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
                 "main": "账号",
+                "profile": "轮廓",
+                "deposit": "存款",
+                "addcredits": "添加积分",
+                "credits": "积分",
+                "activity": "活动",
+                "creditdeposits": "信贷存款",
                 "settings": "设置",
                 "password": "密码",
                 "sessions": "会话",
@@ -19,7 +26,7 @@
                 "register": "注册"
             },
             "admin": {
-                "main": "管理",
+                "main": "联系",
                 "userManagement": "用户管理",
                 "tracker": "追踪使用者",
                 "metrics": "资源监控",
@@ -45,7 +52,7 @@
         },
         "messages": {
             "info": {
-                "authenticated": "如果您要<a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">登录</a>, 您可以使用默认账号:<br/>- 管理员 (账号=\"admin\"和密码=\"admin\") <br/>- 普通用户 (账号=\"user\"和密码=\"user\").",
+                "signin": "请 <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">登录</a>!",
                 "register": "您还没有账号？<a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">注册一个新账号</a>"
             },
             "error": {
@@ -117,7 +124,12 @@
         "Size": "域 {{fieldName}} 不满足最大/最小值限制!",
         "userexists": "该用户名已存在!",
         "emailexists": "该邮箱已被使用!",
-        "idexists": "新建的 {{entityName}} 的ID已经存在"
+        "idexists": "新建的 {{entityName}} 的ID已经存在",
+        "profilenotexists": "沉積前，請填寫您的姓名和個人資料信息！",
+        "internalServerError": "内部服务器错误！"
     },
-    "footer": "这里是页脚"
+    "footer": {
+        "privacy": "隐私政策",
+        "terms": "条款和条件"
+    }
 }

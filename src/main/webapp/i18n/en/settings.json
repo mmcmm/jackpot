@@ -1,12 +1,36 @@
 {
     "settings": {
-        "title": "User settings for [<b>{{username}}</b>]",
+        "title": "User profile for [<b>{{username}}</b>]",
         "form": {
             "firstname": "First Name",
             "firstname.placeholder": "Your first name",
             "lastname": "Last Name",
             "lastname.placeholder": "Your last name",
             "language": "Language",
+            "birthDay": "Birth Day",
+            "birthMonth": "Birth Month",
+            "birthYear": "Birth Year",
+            "sex": "Sex",
+            "addressStreet": "Street and Number",
+            "addressPostal": "Postal Code",
+            "addressCity": "City",
+            "addressCountry": "Country",
+            "agreeTerms": "I agree to the <a href='/#/terms'>Terms & Conditions</a>, including the <a href='/#/terms#cookie'>Cookie Use</a>.",
+            "yearsOld18": "I am at least 18 years old.",
+            "months": {
+                "january": "January",
+                "february": "February",
+                "march": "March",
+                "april": "April",
+                "may": "May",
+                "june": "June",
+                "july": "July",
+                "august": "August",
+                "september": "September",
+                "october": "October",
+                "november": "November",
+                "december": "December"
+            },
             "button": "Save"
         },
         "messages": {
@@ -14,7 +38,7 @@
                 "fail": "<strong>An error has occurred!</strong> Settings could not be saved.",
                 "emailexists": "<strong>E-mail is already in use!</strong> Please choose another one."
             },
-            "success": "<strong>Settings saved!</strong>",
+            "success": "<strong>Profile saved!</strong>",
             "validate": {
                 "firstname": {
                     "required": "Your first name is required.",

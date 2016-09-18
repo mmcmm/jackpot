@@ -128,9 +128,9 @@ public class AccountResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<UserDTO> getAccount() {
+    public ResponseEntity<UserDTO> getAccount(@RequestHeader(value = "HTTP_CF_IPCOUNTRY", defaultValue = "GB", required = false) String country) {
         return Optional.ofNullable(userService.getUserWithAuthorities())
-            .map(user -> new ResponseEntity<>(new UserDTO(user), HttpStatus.OK))
+            .map(user -> new ResponseEntity<>(new UserDTO(user).setProfileInfo(user, country), HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
@@ -153,7 +153,9 @@ public class AccountResource {
             .findOneByLogin(SecurityUtils.getCurrentUserLogin())
             .map(u -> {
                 userService.updateUser(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(),
-                    userDTO.getLangKey());
+                    userDTO.getLangKey(), userDTO.getAddressStreet(), userDTO.getAddressPostal(), userDTO.getAddressCity(),
+                    userDTO.getAddressCountry(), userDTO.getBirthDay(), userDTO.getBirthMonth(),
+                    userDTO.getBirthYear(), userDTO.isAgreeTerms(), userDTO.isYearsOld18());
                 return new ResponseEntity<String>(HttpStatus.OK);
             })
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));

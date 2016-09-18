@@ -1,12 +1,36 @@
 {
     "settings": {
-        "title": "Einstellungen für Benutzer [<b>{{username}}</b>]",
+        "title": "Benutzerprofil für [<b>{{username}}</b>]",
         "form": {
             "firstname": "Vorname",
             "firstname.placeholder": "Ihr Vorname",
             "lastname": "Nachname",
             "lastname.placeholder": "Ihr Nachname",
             "language": "Sprache",
+            "birthDay": "Geburtstag",
+            "birthMonth": "Geburtsmonat",
+            "birthYear": "Geburtsjahr",
+            "sex": "Sex",
+            "addressStreet": "Straße und Nummer",
+            "addressPostal": "Postleitzahl",
+            "addressCity": "Stadt",
+            "addressCountry": "Land",
+            "agreeTerms": "Ich stimme dem zu <a href='/#/terms'>Terms & Bedingungen</a>, einschließlich der <a href='/#/terms#cookie'>Verwendung von Cookies</a>.",
+            "yearsOld18": "Ich bin mindestens 18 Jahre alt.",
+            "months": {
+                "january": "Januar",
+                "february": "Februar",
+                "march": "März",
+                "april": "April",
+                "may": "Mai",
+                "june": "Juni",
+                "july": "Juli",
+                "august": "August",
+                "september": "September",
+                "october": "Oktober",
+                "november": "November",
+                "december": "Dezember"
+            },
             "button": "Speichern"
         },
         "messages": {
@@ -14,7 +38,7 @@
                 "fail": "<strong>Es ist ein Fehler aufgetreten!</strong> Die Einstellungen konnten nicht gespeichert werden.",
                 "emailexists": "<strong>E-mail wird bereits verwendet!</strong> Bitte wählen Sie eine andere aus."
             },
-            "success": "<strong>Einstellungen wurden gespeichert!</strong>",
+            "success": "<strong>Profil gespeichert!</strong>",
             "validate": {
                 "firstname": {
                     "required": "Ihr Vorname wird benötigt.",

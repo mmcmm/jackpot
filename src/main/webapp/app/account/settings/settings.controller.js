@@ -19,13 +19,25 @@
          * Store the "settings account" in a separate variable, and not in the shared "account" variable.
          */
         var copyAccount = function (account) {
+            console.log(account);
             return {
                 activated: account.activated,
                 email: account.email,
                 firstName: account.firstName,
                 langKey: account.langKey,
                 lastName: account.lastName,
-                login: account.login
+                login: account.login,
+
+                // profile info
+                birthDay: account.birthDay,
+                birthMonth : account.birthMonth,
+                birthYear : account.birthYear,
+                addressStreet : account.addressStreet,
+                addressPostal : account.addressPostal,
+                addressCity : account.addressCity,
+                addressCountry : account.addressCountry,
+                agreeTerms : account.agreeTerms,
+                yearsOld18 : account.yearsOld18
             };
         };
 

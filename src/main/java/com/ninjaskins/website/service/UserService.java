@@ -146,12 +146,24 @@ public class UserService {
         return user;
     }
 
-    public void updateUser(String firstName, String lastName, String email, String langKey) {
+    public void updateUser(String firstName, String lastName, String email, String langKey,
+                           String addressStreet, String addressPostal, String addressCity,
+                           String addressCountry, String birthDay, String birthMonth,
+                           String birthYear, boolean agreeTerms, boolean yearsOld18) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(u -> {
             u.setFirstName(firstName);
             u.setLastName(lastName);
             u.setEmail(email);
             u.setLangKey(langKey);
+            u.setAddressStreet(addressStreet);
+            u.setAddressPostal(addressPostal);
+            u.setAddressCity(addressCity);
+            u.setAddressCountry(addressCountry);
+            u.setBirthDay(birthDay);
+            u.setBirthMonth(birthMonth);
+            u.setBirthYear(birthYear);
+            u.setAgreeTerms(agreeTerms);
+            u.setYearsOld18(yearsOld18);
             userRepository.save(u);
             userSearchRepository.save(u);
             log.debug("Changed Information for User: {}", u);

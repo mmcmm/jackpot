@@ -97,28 +97,6 @@ Main page styles
     letter-spacing: -1px;
 }
 
-.hipster {
-    display: inline-block;
-    width: 347px;
-    height: 497px;
-    background: url("../images/hipster.png") no-repeat center top;
-    background-size: contain;
-}
-
-/* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (   min--moz-device-pixel-ratio: 2),
-only screen and (     -o-min-device-pixel-ratio: 2/1),
-only screen and (        min-device-pixel-ratio: 2),
-only screen and (                min-resolution: 192dpi),
-only screen and (                min-resolution: 2dppx) {
-    .hipster {
-        background: url("../images/hipster2x.png") no-repeat center top;
-        background-size: contain;
-    }
-}
-
 /* ==========================================================================
 Generic styles
 ========================================================================== */
@@ -156,7 +134,7 @@ Generic styles
 make sure browsers use the pointer cursor for anchors, even with no href
 ========================================================================== */
 a:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .hand {
@@ -269,12 +247,12 @@ entity tables helpers
 /* Makes toolbar not wrap on smaller screens
  http://www.sketchingwithcss.com/samplechapter/cheatsheet.html#right */
 .flex-btn-group-container {
-   display: -webkit-flex;
-   display: flex;
-   -webkit-flex-direction: row;
-   flex-direction: row;
-   -webkit-justify-content: flex-end;
-   justify-content: flex-end;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
 }
 
 .jh-table > tbody > tr > td {
@@ -374,3 +352,48 @@ Social Buttons
 }
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
+
+#social-footer-icons {
+    margin-right: 10px;
+}
+
+#social-footer-icons li a{
+    float: left;
+    height: 23px;
+    width: 23px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url("../images/social-icons.png");
+}
+
+#social-footer-icons #tw{
+    background-position: 0 0;
+}
+
+#social-footer-icons #tw:hover{
+    background-position: 0 -23px;
+}
+
+#social-footer-icons #fb{
+    background-position: -23px 0;
+}
+
+#social-footer-icons #fb:hover{
+    background-position: -23px -23px;
+}
+
+#social-footer-icons #rss{
+    background-position: -46px 0;
+}
+
+#social-footer-icons #rss:hover{
+    background-position: -46px -23px;
+}
+
+#social-footer-icons #plus{
+    background-position: -69px 0;
+}
+
+#social-footer-icons #plus:hover{
+    background-position: -69px -69px;
+}

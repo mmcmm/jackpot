@@ -1,12 +1,36 @@
 {
     "settings": {
-        "title": "Настройки пользователя для [<b>{{username}}</b>]",
+        "title": "Профиль пользователя для [<b>{{username}}</b>]",
         "form": {
             "firstname": "Имя",
             "firstname.placeholder": "Ваше имя",
             "lastname": "Фамилия",
             "lastname.placeholder": "Ваша фамилия",
             "language": "Язык",
+            "birthDay": "день рождения",
+            "birthMonth": "Месяц рождения",
+            "birthYear": "год рождения",
+            "sex": "секс",
+            "addressStreet": "Улица и номер",
+            "addressPostal": "Почтовый индекс",
+            "addressCity": "город",
+            "addressCountry": "Страна",
+            "agreeTerms": "я согласен <a href='/#/terms'>Правила и условия</a>, в том числе <a href='/#/terms#cookie'>Cookie Использование</a>.",
+            "yearsOld18": "Я по крайней мере 18 лет.",
+            "months": {
+                "january": "январь",
+                "february": "февраль",
+                "march": "март",
+                "april": "апрель",
+                "may": "май",
+                "june": "июнь",
+                "july": "июль",
+                "august": "август",
+                "september": "сентябрь",
+                "october": "октябрь",
+                "november": "ноябрь",
+                "december": "декабрь"
+            },
             "button": "Сохранить"
         },
         "messages": {
@@ -14,7 +38,7 @@
                 "fail": "<strong>Произошла ошибка!</strong> Настройки не могут быть сохранены.",
                 "emailexists": "<strong>E-mail уже используется!</strong> Пожалуйста, попробуйте другой."
             },
-            "success": "<strong>Настройки сохранены!</strong>",
+            "success": "<strong>Профиль сохранен!</strong>",
             "validate": {
                 "firstname": {
                     "required": "Имя должно быть указано.",

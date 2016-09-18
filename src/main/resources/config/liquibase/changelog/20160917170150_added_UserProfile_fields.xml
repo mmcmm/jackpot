@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle"/>
+
+    <!--
+        Added the UserProfile fields to the user table
+    -->
+    <changeSet id="20160917170150" author="jhipster">
+
+            <addColumn tableName="jhi_user">
+                <column name="credits" type="integer"/>
+            </addColumn>
+
+            <addColumn tableName="jhi_user">
+                <column name="birth_day" type="varchar(2)"/>
+            </addColumn>
+
+            <addColumn tableName="jhi_user">
+                <column name="birth_month" type="varchar(2)"/>
+            </addColumn>
+
+            <addColumn tableName="jhi_user">
+                <column name="birth_year" type="varchar(4)"/>
+            </addColumn>
+
+            <addColumn tableName="jhi_user">
+                <column name="address_street" type="varchar(95)"/>
+            </addColumn>
+
+            <addColumn tableName="jhi_user">
+                <column name="address_postal" type="varchar(11)"/>
+            </addColumn>
+
+            <addColumn tableName="jhi_user">
+                <column name="address_city" type="varchar(65)"/>
+            </addColumn>
+
+            <addColumn tableName="jhi_user">
+                <column name="address_country" type="varchar(2)"/>
+            </addColumn>
+
+            <addColumn tableName="jhi_user">
+                <column name="agree_terms" type="bit"/>
+            </addColumn>
+
+            <addColumn tableName="jhi_user">
+                <column name="years_old_18" type="bit"/>
+            </addColumn>
+
+    </changeSet>
+</databaseChangeLog>

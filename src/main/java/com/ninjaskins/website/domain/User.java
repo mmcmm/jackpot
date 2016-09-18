@@ -232,4 +232,120 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", activationKey='" + activationKey + '\'' +
             "}";
     }
+
+
+    // next custom profile fields
+
+    @Column(name = "credits", nullable = false)
+    private Integer credits;
+
+    @Size(min = 2, max = 2)
+    @Column(name = "birth_day", length = 2, nullable = false)
+    private String birthDay;
+
+    @Size(min = 2, max = 2)
+    @Column(name = "birth_month", length = 2, nullable = false)
+    private String birthMonth;
+
+    @Size(min = 4, max = 4)
+    @Column(name = "birth_year", length = 4, nullable = false)
+    private String birthYear;
+
+    @Size(max = 95)
+    @Column(name = "address_street", length = 95, nullable = false)
+    private String addressStreet;
+
+    @Size(max = 11)
+    @Column(name = "address_postal", length = 11, nullable = false)
+    private String addressPostal;
+
+    @Size(max = 65)
+    @Column(name = "address_city", length = 65, nullable = false)
+    private String addressCity;
+
+    @Size(min = 2, max = 2)
+    @Column(name = "address_country", length = 2, nullable = false)
+    private String addressCountry;
+
+    @Column(name = "agree_terms", nullable = false)
+    private Boolean agreeTerms;
+
+    @Column(name = "years_old_18", nullable = false)
+    private Boolean yearsOld18;
+
+    public Integer getCredits() {
+        return credits;
+    }
+
+    public String getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
+    }
+
+    public String getBirthMonth() {
+        return birthMonth;
+    }
+
+    public void setBirthMonth(String birthMonth) {
+        this.birthMonth = birthMonth;
+    }
+
+    public String getBirthYear() {
+        return birthYear;
+    }
+
+    public void setBirthYear(String birthYear) {
+        this.birthYear = birthYear;
+    }
+
+    public String getAddressStreet() {
+        return addressStreet;
+    }
+
+    public void setAddressStreet(String addressStreet) {
+        this.addressStreet = addressStreet;
+    }
+
+    public String getAddressPostal() {
+        return addressPostal;
+    }
+
+    public void setAddressPostal(String addressPostal) {
+        this.addressPostal = addressPostal;
+    }
+
+    public String getAddressCity() {
+        return addressCity;
+    }
+
+    public void setAddressCity(String addressCity) {
+        this.addressCity = addressCity;
+    }
+
+    public String getAddressCountry() {
+        return addressCountry;
+    }
+
+    public void setAddressCountry(String addressCountry) {
+        this.addressCountry = addressCountry;
+    }
+
+    public Boolean isAgreeTerms() {
+        return agreeTerms;
+    }
+
+    public void setAgreeTerms(Boolean agreeTerms) {
+        this.agreeTerms = agreeTerms;
+    }
+
+    public Boolean isYearsOld18() {
+        return yearsOld18;
+    }
+
+    public void setYearsOld18(Boolean yearsOld18) {
+        this.yearsOld18 = yearsOld18;
+    }
 }

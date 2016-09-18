@@ -22,6 +22,18 @@
     </appender>
 -->
 
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${user.dir}/logs/error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>utf-8</charset>
+            <Pattern>%d %-5level [%thread] %logger{0}: %msg%n</Pattern>
+        </encoder>
+    </appender>
+
     <logger name="com.ninjaskins.website" level="#logback.loglevel#"/>
 
     <logger name="javax.activation" level="WARN"/>
@@ -59,5 +71,11 @@
     <root level="#logback.loglevel#">
         <appender-ref ref="CONSOLE"/>
     </root>
+
+    <springProfile name="prod">
+        <root level="ERROR">
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
 
 </configuration>

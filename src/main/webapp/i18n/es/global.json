@@ -6,11 +6,18 @@
             "home": "Inicio",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "Entidades",
+                "main": "History",
+                "userProfile": "User Profile",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
                 "main": "Cuenta",
+                "profile": "Perfil",
+                "deposit": "Depositar",
+                "addcredits": "Añadir Créditos",
+                "credits": "Créditos",
+                "activity": "Actividad",
+                "creditdeposits": "Depósitos de crédito",
                 "settings": "Ajustes",
                 "password": "Contraseña",
                 "sessions": "Sesiones",
@@ -19,7 +26,7 @@
                 "register": "Crear una cuenta"
             },
             "admin": {
-                "main": "Administración",
+                "main": "Admin",
                 "userManagement": "Gestión de usuarios",
                 "tracker": "Registro de los usuarios",
                 "metrics": "Métricas",
@@ -45,7 +52,7 @@
         },
         "messages": {
             "info": {
-                "authenticated": "Si desea <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">iniciar una sesión</a>, puede intentar con las cuentas predeterminadas:<br/>- Administrator (usuario=\"admin\" y contraseña=\"admin\") <br/>- Usuario (usuario=\"user\" y contraseña=\"user\").",
+                "signin": "Por favor <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">iniciar una sesión</a>!",
                 "register": "¿No tienes una cuenta todavía? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">Crea una cuenta</a>"
             },
             "error": {
@@ -117,7 +124,12 @@
         "Size": "¡El campo {{fieldName}} no cumple con los requisitos de tamaño mínimo/máximo!",
         "userexists": "Login name already used!",
         "emailexists": "E-mail is already in use!",
-        "idexists": "A new {{entityName}} cannot already have an ID"
+        "idexists": "A new {{entityName}} cannot already have an ID",
+        "profilenotexists": "Por favor complete su nombre y perfil de información antes de depositar!",
+        "internalServerError": "Error de servidor interno!"
     },
-    "footer": "pie de página"
+    "footer": {
+        "privacy": "Política de Privacidad",
+        "terms": "Términos y condiciones"
+    }
 }
