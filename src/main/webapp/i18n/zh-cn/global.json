@@ -6,8 +6,6 @@
             "home": "首页",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "历史",
-                "userProfile": "User Profile",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -17,7 +15,7 @@
                 "addcredits": "添加积分",
                 "credits": "积分",
                 "activity": "活动",
-                "creditdeposits": "信贷存款",
+                "creditdeposit": "存款",
                 "settings": "设置",
                 "password": "密码",
                 "sessions": "会话",
@@ -125,7 +123,7 @@
         "userexists": "该用户名已存在!",
         "emailexists": "该邮箱已被使用!",
         "idexists": "新建的 {{entityName}} 的ID已经存在",
-        "profilenotexists": "沉積前，請填寫您的姓名和個人資料信息！",
+        "profilenotexists": "<strong>请从法律填写<a href='/#/settings'>轮廓</a>沉积前的信息！</strong>",
         "internalServerError": "内部服务器错误！"
     },
     "footer": {

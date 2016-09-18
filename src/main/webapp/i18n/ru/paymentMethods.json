@@ -1,0 +1,8 @@
+{
+    "ninjaskinsApp": {
+        "PaymentMethods" : {
+            "null": "",
+            "G2APAY": "G2APAY"
+        }
+    }
+}

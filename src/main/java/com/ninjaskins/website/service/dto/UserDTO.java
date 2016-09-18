@@ -126,29 +126,29 @@ public class UserDTO {
     }
 
     @Size(min = 2, max = 2)
-    public String birthDay;
+    private String birthDay;
 
     @Size(min = 2, max = 2)
-    public String birthMonth;
+    private String birthMonth;
 
     @Size(min = 4, max = 4)
-    public String birthYear;
+    private String birthYear;
 
     @Size(max = 95)
-    public String addressStreet;
+    private String addressStreet;
 
     @Size(max = 11)
-    public String addressPostal;
+    private String addressPostal;
 
     @Size(max = 65)
-    public String addressCity;
+    private String addressCity;
 
     @Size(min = 2, max = 2)
-    public String addressCountry;
+    private String addressCountry;
 
-    public Boolean agreeTerms;
+    private Boolean agreeTerms = false;
 
-    public Boolean yearsOld18;
+    private Boolean yearsOld18 = false;
 
     public String getBirthDay() {
         return birthDay;

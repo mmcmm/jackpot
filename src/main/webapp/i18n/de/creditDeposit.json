@@ -1,0 +1,17 @@
+{
+    "ninjaskinsApp": {
+        "creditDeposit" : {
+            "home": {
+                "title": "Credit Deposits"
+            },
+            "credits": "Credits",
+            "method": "Method",
+            "price": "Price",
+            "created_date": "Date",
+            "user": "User",
+            "messages": {
+                "success": "<strong>Credits added!</strong>"
+            }
+        }
+    }
+}

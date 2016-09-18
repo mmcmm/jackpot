@@ -36,9 +36,13 @@
     <cache name="com.ninjaskins.website.domain.User.persistentTokens"
            timeToLiveSeconds="3600">
     </cache>
-    
+
 
     <cache name="com.ninjaskins.website.social.SocialUserConnection"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="com.ninjaskins.website.domain.CreditDeposit"
            timeToLiveSeconds="3600">
     </cache>
 

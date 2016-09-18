@@ -6,8 +6,6 @@
             "home": "Home",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "History",
-                "userProfile": "User Profile",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -17,7 +15,7 @@
                 "addcredits": "Add Credits",
                 "credits": "Credits",
                 "activity": "Activity",
-                "creditdeposits": "Credit Deposits",
+                "creditdeposit": "Deposit",
                 "settings": "Settings",
                 "password": "Password",
                 "sessions": "Sessions",
@@ -125,7 +123,7 @@
         "userexists": "Login name already used!",
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID",
-        "profilenotexists": "Please fill out your Name and Profile info before depositing!",
+        "profilenotexists": "<strong>Please fill out your <a href='/#/settings'>Profile</a> info before depositing!</strong>",
         "internalServerError": "Internal Server Error!"
     },
     "footer": {

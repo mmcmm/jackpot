@@ -1,0 +1,47 @@
+<div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <h2 data-translate="ninjaskinsApp.creditDeposit.home.title" translate-values="{username: '{{vm.creditDepositAccount.login}}'}">
+                User Credits for [<b>{{vm.creditDepositAccount.login}}</b>]
+            </h2>
+
+            <h3 ng-if="vm.creditDeposit.creditBalance != -1">
+                <span class="label label-info">{{vm.creditDeposit.creditBalance}} <span class="text-lowercase" data-translate="global.menu.account.credits">Credits</span></span>
+            </h3>
+            <div class="alert alert-success" ng-show="vm.success" data-translate="ninjaskinsApp.creditDeposit.messages.success">
+                <strong>Profile saved!</strong>
+            </div>
+
+            <jhi-alert-error></jhi-alert-error>
+            <div class="alert alert-danger" ng-if="vm.creditDeposit.creditBalance == -1" data-translate="error.profilenotexists" translate-compile>
+                Please fill out your <a href="/#/settings">Profile</a> info before depositing!
+            </div>
+
+            <form ng-if="vm.creditDeposit.creditBalance != -1" name="form" role="form" novalidate ng-submit="vm.save()" show-validation>
+                <div class="form-group">
+                    <label class="control-label" data-translate="ninjaskinsApp.creditDeposit.credits" for="field_credits">Credits</label>
+                    <input type="number" class="form-control" name="credits" id="field_credits"
+                           ng-model="vm.creditDeposit.depositCredits"
+                           required min="100" />
+                    <div ng-show="form.credits.$invalid">
+                        <p class="help-block"
+                           ng-show="form.credits.$error.required" data-translate="entity.validation.required">
+                            This field is required.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.credits.$error.min" data-translate="entity.validation.min" translate-value-min="100">
+                            This field should be more than 100.
+                        </p>
+                        <p class="help-block"
+                           ng-show="form.credits.$error.number" data-translate="entity.validation.number">
+                            This field should be a number.
+                        </p>
+                    </div>
+                </div>
+
+                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="global.menu.account.addcredits">Add Credits</button>
+            </form>
+        </div>
+    </div>
+
+</div>

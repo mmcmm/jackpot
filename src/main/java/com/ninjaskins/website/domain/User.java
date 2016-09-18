@@ -236,42 +236,42 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     // next custom profile fields
 
-    @Column(name = "credits", nullable = false)
-    private Integer credits;
+    @Column(name = "credits")
+    private Integer credits = 0;
 
     @Size(min = 2, max = 2)
-    @Column(name = "birth_day", length = 2, nullable = false)
+    @Column(name = "birth_day", length = 2)
     private String birthDay;
 
     @Size(min = 2, max = 2)
-    @Column(name = "birth_month", length = 2, nullable = false)
+    @Column(name = "birth_month", length = 2)
     private String birthMonth;
 
     @Size(min = 4, max = 4)
-    @Column(name = "birth_year", length = 4, nullable = false)
+    @Column(name = "birth_year", length = 4)
     private String birthYear;
 
     @Size(max = 95)
-    @Column(name = "address_street", length = 95, nullable = false)
+    @Column(name = "address_street", length = 95)
     private String addressStreet;
 
     @Size(max = 11)
-    @Column(name = "address_postal", length = 11, nullable = false)
+    @Column(name = "address_postal", length = 11)
     private String addressPostal;
 
     @Size(max = 65)
-    @Column(name = "address_city", length = 65, nullable = false)
+    @Column(name = "address_city", length = 65)
     private String addressCity;
 
     @Size(min = 2, max = 2)
-    @Column(name = "address_country", length = 2, nullable = false)
+    @Column(name = "address_country", length = 2)
     private String addressCountry;
 
-    @Column(name = "agree_terms", nullable = false)
-    private Boolean agreeTerms;
+    @Column(name = "agree_terms")
+    private Boolean agreeTerms = false;
 
-    @Column(name = "years_old_18", nullable = false)
-    private Boolean yearsOld18;
+    @Column(name = "years_old_18")
+    private Boolean yearsOld18 = false;
 
     public Integer getCredits() {
         return credits;

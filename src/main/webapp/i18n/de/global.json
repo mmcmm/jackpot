@@ -6,8 +6,6 @@
             "home": "Startseite",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "Geschichte",
-                "userProfile": "User Profile",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -17,7 +15,7 @@
                 "addcredits": "In Credits",
                 "credits": "Credits",
                 "activity": "Aktivität",
-                "creditdeposits": "Kredit Einlagen",
+                "creditdeposit": "Anzahlung",
                 "settings": "Einstellungen",
                 "password": "Passwort",
                 "sessions": "Sitzungen",
@@ -125,7 +123,7 @@
         "userexists": "Benutzername bereits vergeben!",
         "emailexists": "E-mail wird bereits verwendet!",
         "idexists": "Ein neuer {{entityName}} kann noch keine ID haben",
-        "profilenotexists": "Bitte füllen Sie Ihren Namen und Profildaten  vor Ablegen!",
+        "profilenotexists": "<strong>Bitte geben Sie Ihre <a href='/#/settings'>Profil</a> Infos vor Ablegen!</strong>",
         "internalServerError": "Interner Serverfehler!"
     },
     "footer": {

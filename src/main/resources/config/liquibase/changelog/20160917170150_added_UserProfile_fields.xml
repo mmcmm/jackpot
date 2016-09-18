@@ -19,7 +19,7 @@
     <changeSet id="20160917170150" author="jhipster">
 
             <addColumn tableName="jhi_user">
-                <column name="credits" type="integer"/>
+                <column name="credits" type="integer" valueNumeric="0"/>
             </addColumn>
 
             <addColumn tableName="jhi_user">
@@ -51,11 +51,11 @@
             </addColumn>
 
             <addColumn tableName="jhi_user">
-                <column name="agree_terms" type="bit"/>
+                <column name="agree_terms" type="bit" valueBoolean="false"/>
             </addColumn>
 
             <addColumn tableName="jhi_user">
-                <column name="years_old_18" type="bit"/>
+                <column name="years_old_18" type="bit" valueBoolean="false"/>
             </addColumn>
 
     </changeSet>
