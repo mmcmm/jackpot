@@ -8,10 +8,13 @@
     <include file="classpath:config/liquibase/changelog/20160917170150_added_UserProfile_fields.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160918144918_added_entity_CreditDeposit.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160918223659_added_entity_Jackpot.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918234654_added_entity_JackpotDeposit.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20160918144918_added_entity_constraints_CreditDeposit.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160918144919_added_indexes_CreditDeposit.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160918223659_added_entity_constraints_Jackpot.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160918223660_add_winner_index_Jackpot.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918234654_added_entity_constraints_JackpotDeposit.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160918234655_added_indexes_JackpotDeposit.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

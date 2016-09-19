@@ -48,7 +48,7 @@ public class CreditDepositController {
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<CreditDepositDTO> getAllCreditDeposits() {
-        log.debug("REST request to get all CreditDeposit Balance");
+        log.debug("REST request to get the CreditDeposit Balance");
         return userRepository
             .findOneByLogin(SecurityUtils.getCurrentUserLogin())
             .map(u -> {

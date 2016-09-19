@@ -5,9 +5,9 @@
         .module('ninjaskinsApp')
         .controller('CreditDepositController', CreditDepositController);
 
-    CreditDepositController.$inject = ['Principal', 'JhiLanguageService', '$translate', 'CreditDeposit'];
+    CreditDepositController.$inject = ['Principal', 'CreditDeposit'];
 
-    function CreditDepositController (Principal, JhiLanguageService, $translate, CreditDeposit) {
+    function CreditDepositController (Principal, CreditDeposit) {
         var vm = this;
 
         vm.error = null;
