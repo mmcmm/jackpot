@@ -4,6 +4,9 @@
         "subtitle": "Join the game and win: ",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
+        },
+        "jackpot": {
+            "balance": "Balance: {{balance | number}}"
         }
     }
 }
