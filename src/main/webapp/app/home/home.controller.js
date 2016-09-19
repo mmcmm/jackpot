@@ -21,7 +21,6 @@
         vm.register = register;
         $scope.$on('authenticationSuccess', function() {
             getAccount();
-            vm.creditDeposit = CreditDeposit.get();
         });
 
         getAccount();
@@ -30,15 +29,13 @@
             Principal.identity().then(function(account) {
                 vm.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated;
+                vm.creditDeposit = CreditDeposit.get();
             });
         }
+
         function register () {
             $state.go('register');
         }
-
-        // Principal.identity().then(function() {
-        //     vm.jackpotDeposit = JackpotDeposit.get();
-        // });
 
         function save () {
             vm.isSaving = true;

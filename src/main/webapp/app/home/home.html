@@ -23,7 +23,12 @@
 
                 <form name="form" role="form" novalidate ng-submit="vm.save()" show-validation ng-switch-when="true">
                     <div class="form-group">
-                        <p><strong>Balance: {{vm.creditDeposit.creditBalance}}</strong></p>
+                        <p class="lead" ng-if="vm.creditDeposit.creditBalance != -1"  data-translate="home.jackpot.balance" translate-values="{balance: '{{vm.creditDeposit.creditBalance}}'}">
+                            Balance: {{vm.creditDeposit.creditBalance | number}}
+                        </p>
+                        <p class="lead" ng-if="vm.creditDeposit.creditBalance == -1"  data-translate="home.jackpot.balance" translate-values="{balance: 0}">
+                            Balance: 0
+                        </p>
                         <label class="control-label" data-translate="ninjaskinsApp.jackpotDeposit.jackpots" for="field_jackpots">Jackpots</label>
                         <input type="number" class="form-control" name="amount" id="field_jackpots"
                                ng-model="vm.jackpotDeposit.amount"

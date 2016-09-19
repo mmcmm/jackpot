@@ -6,7 +6,7 @@
             </h2>
 
             <h3 ng-if="vm.creditDeposit.creditBalance != -1">
-                <span class="label label-info">{{vm.creditDeposit.creditBalance}} <span class="text-lowercase" data-translate="global.menu.account.credits">Credits</span></span>
+                <span class="label label-info">{{vm.creditDeposit.creditBalance | number}} <span class="text-lowercase" data-translate="global.menu.account.credits">Credits</span></span>
             </h3>
             <div class="alert alert-success" ng-show="vm.success" data-translate="ninjaskinsApp.creditDeposit.messages.success">
                 <strong>Profile saved!</strong>

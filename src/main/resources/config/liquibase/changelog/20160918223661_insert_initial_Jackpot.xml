@@ -13,11 +13,13 @@
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle"/>
 
-    <changeSet author="marcus" id="20160918223660">
-        <createIndex tableName="jackpot"
-                     indexName="k_jackpot_winner_id">
-            <column name="winner_id"/>
-        </createIndex>
+    <changeSet author="marcus" id="20160918223661">
+        <insert tableName="jackpot">
+            <column name="total" valueNumeric="0"/>
+            <column name="fee" valueNumeric="0"/>
+            <column name="hash" value=""/>
+            <column name="created_date" valueDate="${now}"/>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>
