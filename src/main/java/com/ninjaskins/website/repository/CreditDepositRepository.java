@@ -12,7 +12,6 @@ import java.util.List;
  * Spring Data JPA repository for the CreditDeposit entity.
  */
 @SuppressWarnings("unused")
-@Transactional
 public interface CreditDepositRepository extends JpaRepository<CreditDeposit,Long> {
 
     @Query("select creditDeposit from CreditDeposit creditDeposit where creditDeposit.user.login = ?#{principal.username}")
