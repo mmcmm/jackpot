@@ -1,5 +1,6 @@
 package com.ninjaskins.website.domain.util;
 
+import com.ninjaskins.website.domain.Jackpot;
 import com.ninjaskins.website.domain.User;
 
 /**
@@ -23,5 +24,9 @@ public final class DomainUtils {
         return (!DomainUtils.anyObjectsAreNull(u.getFirstName(), u.getLastName(), u.getEmail(),
             u.getAddressStreet(), u.getAddressPostal(), u.getAddressCity(), u.getAddressCountry(),
             u.getBirthDay(), u.getBirthMonth(), u.getBirthYear()) && u.isAgreeTerms() && u.isYearsOld18());
+    }
+
+    public static Boolean safeToJackpotDeposit(Jackpot currentJackpot, int amount, int MIN_DEPOSIT) {
+        return (currentJackpot != null && currentJackpot.getWinner() == null && amount >= MIN_DEPOSIT);
     }
 }

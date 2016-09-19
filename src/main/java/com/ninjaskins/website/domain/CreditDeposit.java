@@ -1,5 +1,6 @@
 package com.ninjaskins.website.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ninjaskins.website.domain.enumeration.PaymentMethods;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -42,7 +43,8 @@ public class CreditDeposit implements Serializable {
 
     @NotNull
     @Column(name = "created_date", nullable = false)
-    private ZonedDateTime created_date;
+    @JsonIgnore
+    private ZonedDateTime created_date = ZonedDateTime.now();
 
     @ManyToOne
     @NotNull

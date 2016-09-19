@@ -397,3 +397,7 @@ Social Buttons
 #social-footer-icons #plus:hover{
     background-position: -69px -69px;
 }
+
+#jackpot-deposit-form {
+    margin-bottom: 40px;
+}

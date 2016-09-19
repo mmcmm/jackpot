@@ -8,51 +8,121 @@
             </p>
 
             <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
-                    You are logged in as user "{{vm.account.login}}".
-                </div>
 
-                <div class="alert alert-warning" ng-switch-when="false">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
+                            You are logged in as user "{{vm.account.login}}".
+                        </div>
+                        <div class="alert alert-warning" ng-switch-when="false">
                     <span data-translate="global.messages.info.signin" translate-compile>
                         Please <a class="alert-link" href="" ng-click="vm.login()">sign in</a>!
                     </span>
-                    <span data-translate="global.messages.info.register" translate-compile>
+                            <span data-translate="global.messages.info.register" translate-compile>
                         You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
                     </span>
-                </div>
+                        </div>
+                        <form name="form" role="form" id="jackpot-deposit-form" novalidate ng-submit="vm.save()" show-validation
+                              ng-switch-when="true">
+                            <div class="form-group">
+                                <p class="lead" ng-if="vm.creditDeposit.creditBalance != -1"
+                                   data-translate="home.jackpot.balance"
+                                   translate-values="{balance: '{{vm.creditDeposit.creditBalance}}'}">
+                                    Balance: {{vm.creditDeposit.creditBalance | number}}
+                                </p>
+                                <p class="lead" ng-if="vm.creditDeposit.creditBalance == -1"
+                                   data-translate="home.jackpot.balance" translate-values="{balance: 0}">
+                                    Balance: 0
+                                </p>
+                                <label class="control-label" data-translate="home.jackpot.amount"
+                                       for="field_amount">Amount</label>
+                                <input type="number" class="form-control" name="amount" id="field_amount"
+                                       ng-model="vm.jackpotDeposit.amount"
+                                       required min="10" max="{{vm.creditDeposit.creditBalance}}"/>
+                                <div ng-show="form.amount.$invalid">
+                                    <p class="help-block"
+                                       ng-show="form.amount.$error.min" data-translate="home.jackpot.min"
+                                       translate-value-min="10">
+                                        Minimum deposit is 10.
+                                    </p>
 
-                <form name="form" role="form" novalidate ng-submit="vm.save()" show-validation ng-switch-when="true">
-                    <div class="form-group">
-                        <p class="lead" ng-if="vm.creditDeposit.creditBalance != -1"  data-translate="home.jackpot.balance" translate-values="{balance: '{{vm.creditDeposit.creditBalance}}'}">
-                            Balance: {{vm.creditDeposit.creditBalance | number}}
-                        </p>
-                        <p class="lead" ng-if="vm.creditDeposit.creditBalance == -1"  data-translate="home.jackpot.balance" translate-values="{balance: 0}">
-                            Balance: 0
-                        </p>
-                        <label class="control-label" data-translate="ninjaskinsApp.jackpotDeposit.jackpots" for="field_jackpots">Jackpots</label>
-                        <input type="number" class="form-control" name="amount" id="field_jackpots"
-                               ng-model="vm.jackpotDeposit.amount"
-                               required min="10" />
-                        <div ng-show="form.amount.$invalid">
-                            <p class="help-block"
-                               ng-show="form.amount.$error.required" data-translate="entity.validation.required">
-                                This field is required.
-                            </p>
-                            <p class="help-block"
-                               ng-show="form.amount.$error.min" data-translate="entity.validation.min" translate-value-min="10">
-                                This field should be more than 10.
-                            </p>
-                            <p class="help-block"
-                               ng-show="form.amount.$error.number" data-translate="entity.validation.number">
-                                This field should be a number.
-                            </p>
+                                    <p class="help-block"
+                                       ng-show="form.amount.$error.max" data-translate="home.jackpot.out">
+                                        Out of balance.
+                                    </p>
+                                    <p class="help-block"
+                                       ng-show="form.amount.$error.number" data-translate="entity.validation.number">
+                                        This field should be a number.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <button type="submit" ng-disabled="form.$invalid || vm.isSaving" class="btn btn-primary"
+                                    data-translate="global.menu.account.deposit">Deposit
+                            </button>
+                        </form>
+                        <div id="participants" class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th data-translate="home.jackpot.user">User</th>
+                                    <th data-translate="home.jackpot.amount">Amount</th>
+                                    <th data-translate="home.jackpot.chance">Chance</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-
-                    <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="global.menu.account.addjackpots">Add Jackpots</button>
-                </form>
+                    <div class="col-xs-7 col-md-offset-1">
+                        <div id="jackpot-deposits" class="table-responsive">
+                            <div class="alert alert-info">
+                                <strong data-translate="home.jackpot.total" translate-values="{total: '{{vm.jackpot.total}}'}">
+                                    Total: {{vm.jackpot.total | number}}
+                                </strong>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th data-translate="home.jackpot.user">User</th>
+                                    <th data-translate="home.jackpot.amount">Amount</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                </tr>
+                                <tr>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-
 
         </div>
     </div>

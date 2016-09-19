@@ -1,5 +1,6 @@
 package com.ninjaskins.website.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -40,7 +41,8 @@ public class Jackpot implements Serializable {
 
     @NotNull
     @Column(name = "created_date", nullable = false)
-    private ZonedDateTime created_date;
+    @JsonIgnore
+    private ZonedDateTime created_date = ZonedDateTime.now();
 
     @ManyToOne
     private User winner;

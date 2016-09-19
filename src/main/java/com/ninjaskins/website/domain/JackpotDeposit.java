@@ -1,5 +1,6 @@
 package com.ninjaskins.website.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -32,7 +33,8 @@ public class JackpotDeposit implements Serializable {
 
     @NotNull
     @Column(name = "created_date", nullable = false)
-    private ZonedDateTime created_date;
+    @JsonIgnore
+    private ZonedDateTime created_date = ZonedDateTime.now();
 
     @ManyToOne
     @NotNull
@@ -41,6 +43,13 @@ public class JackpotDeposit implements Serializable {
     @ManyToOne
     @NotNull
     private Jackpot jackpot;
+
+    public JackpotDeposit() {}
+    public JackpotDeposit(int amount, User user, Jackpot jackpot) {
+        this.amount = amount;
+        this.user = user;
+        this.jackpot = jackpot;
+    }
 
     public Long getId() {
         return id;
@@ -52,15 +61,6 @@ public class JackpotDeposit implements Serializable {
 
     public Integer getAmount() {
         return amount;
-    }
-
-    public JackpotDeposit amount(Integer amount) {
-        this.amount = amount;
-        return this;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
     }
 
     public ZonedDateTime getCreated_date() {

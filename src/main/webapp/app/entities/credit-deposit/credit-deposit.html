@@ -5,17 +5,18 @@
                 User Credits for [<b>{{vm.creditDepositAccount.login}}</b>]
             </h2>
 
-            <h3 ng-if="vm.creditDeposit.creditBalance != -1">
-                <span class="label label-info">{{vm.creditDeposit.creditBalance | number}} <span class="text-lowercase" data-translate="global.menu.account.credits">Credits</span></span>
-            </h3>
             <div class="alert alert-success" ng-show="vm.success" data-translate="ninjaskinsApp.creditDeposit.messages.success">
-                <strong>Profile saved!</strong>
+                <strong>Credits added!</strong>
             </div>
 
             <jhi-alert-error></jhi-alert-error>
             <div class="alert alert-danger" ng-if="vm.creditDeposit.creditBalance == -1" data-translate="error.profilenotexists" translate-compile>
                 Please fill out your <a href="/#/settings">Profile</a> info before depositing!
             </div>
+
+            <h3 ng-if="vm.creditDeposit.creditBalance != -1">
+                <span class="label label-info">{{vm.creditDeposit.creditBalance | number}} <span class="text-lowercase" data-translate="global.menu.account.credits">Credits</span></span>
+            </h3>
 
             <form ng-if="vm.creditDeposit.creditBalance != -1" name="form" role="form" novalidate ng-submit="vm.save()" show-validation>
                 <div class="form-group">
@@ -39,7 +40,7 @@
                     </div>
                 </div>
 
-                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="global.menu.account.addcredits">Add Credits</button>
+                <button type="submit" ng-disabled="form.$invalid || vm.isSaving" class="btn btn-primary" data-translate="global.menu.account.addcredits">Add Credits</button>
             </form>
         </div>
     </div>

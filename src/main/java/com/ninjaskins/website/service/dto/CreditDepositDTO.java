@@ -1,5 +1,6 @@
 package com.ninjaskins.website.service.dto;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -8,8 +9,10 @@ import java.util.Objects;
  */
 public class CreditDepositDTO implements Serializable {
 
+    @NotNull
     private Integer creditBalance;
 
+    @NotNull
     private Integer depositCredits;
 
     public CreditDepositDTO() {

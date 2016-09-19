@@ -6,7 +6,13 @@
             "message": "You are logged in as user \"{{username}}\"."
         },
         "jackpot": {
-            "balance": "Balance: {{balance | number}}"
+            "balance": "Balance: {{balance | number}}",
+            "min": "Minimum deposit is {{min | number}}",
+            "out": "Out of balance!",
+            "amount": "Amount",
+            "user": "User",
+            "chance": "Chance",
+            "total": "Jackpot Total: {{total | number}}"
         }
     }
 }

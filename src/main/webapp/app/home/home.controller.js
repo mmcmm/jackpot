@@ -16,6 +16,7 @@
         vm.creditDeposit = null;
         vm.account = null;
         vm.success = null;
+        vm.jackpot = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
@@ -46,6 +47,7 @@
             vm.isSaving = false;
             vm.error = null;
             vm.success = 'OK';
+            vm.creditDeposit.creditBalance -= vm.jackpotDeposit.amount;
         }
 
         function onSaveError () {
