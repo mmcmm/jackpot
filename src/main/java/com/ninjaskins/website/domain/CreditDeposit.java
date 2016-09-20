@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ninjaskins.website.domain.enumeration.PaymentMethods;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -44,7 +43,7 @@ public class CreditDeposit implements Serializable {
     @NotNull
     @Column(name = "created_date", nullable = false)
     @JsonIgnore
-    private ZonedDateTime created_date = ZonedDateTime.now();
+    private ZonedDateTime createdDate = ZonedDateTime.now();
 
     @ManyToOne
     @NotNull
@@ -97,17 +96,17 @@ public class CreditDeposit implements Serializable {
         this.price = price;
     }
 
-    public ZonedDateTime getCreated_date() {
-        return created_date;
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public CreditDeposit created_date(ZonedDateTime created_date) {
-        this.created_date = created_date;
+    public CreditDeposit created_date(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
         return this;
     }
 
-    public void setCreated_date(ZonedDateTime created_date) {
-        this.created_date = created_date;
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
     public User getUser() {
@@ -150,7 +149,7 @@ public class CreditDeposit implements Serializable {
             ", credits='" + credits + "'" +
             ", method='" + method + "'" +
             ", price='" + price + "'" +
-            ", created_date='" + created_date + "'" +
+            ", created_date='" + createdDate + "'" +
             '}';
     }
 }

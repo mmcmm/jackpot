@@ -21,9 +21,9 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 
-// todo change the default admin/user passwords
 // todo docker change how credentials are handled
 // todo add "Activity", google address autocomplete
+// todo run daily delete
 
 @ComponentScan
 @EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })

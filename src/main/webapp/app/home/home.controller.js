@@ -5,15 +5,16 @@
         .module('ninjaskinsApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'JackpotDeposit', 'CreditDeposit'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'JackpotDeposit', 'CreditDeposit', 'AllJackpotDeposit'];
 
-    function HomeController ($scope, Principal, LoginService, $state, JackpotDeposit, CreditDeposit) {
+    function HomeController ($scope, Principal, LoginService, $state, JackpotDeposit, CreditDeposit, AllJackpotDeposit) {
         var vm = this;
 
         vm.error = null;
         vm.save = save;
         vm.jackpotDeposit = null;
         vm.creditDeposit = null;
+        vm.allCreditDeposits = null;
         vm.account = null;
         vm.success = null;
         vm.jackpot = null;
@@ -24,6 +25,7 @@
             getAccount();
         });
 
+        getallCreditDeposits();
         getAccount();
 
         function getAccount() {
@@ -54,6 +56,11 @@
             vm.isSaving = false;
             vm.success = null;
             vm.error = 'ERROR';
+        }
+
+        function getallCreditDeposits() {
+            vm.allCreditDeposits = AllJackpotDeposit.get();
+            console.log(vm.allCreditDeposits);
         }
     }
 })();

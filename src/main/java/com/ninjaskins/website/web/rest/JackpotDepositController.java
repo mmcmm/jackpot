@@ -10,6 +10,7 @@ import com.ninjaskins.website.repository.JackpotRepository;
 import com.ninjaskins.website.repository.UserRepository;
 import com.ninjaskins.website.security.SecurityUtils;
 import com.ninjaskins.website.service.JackpotRoundService;
+import com.ninjaskins.website.service.dto.AllJackpotDepositsDTO;
 import com.ninjaskins.website.service.dto.JackpotDepositDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -73,5 +75,24 @@ public class JackpotDepositController {
             }
         }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * GET  /jackpot-deposits : get all the jackpotDeposits.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of jackpotDeposits in body
+     */
+    @RequestMapping(value = "/jackpot-deposits",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<JackpotDeposit> getAllJackpotDeposits() {
+        log.debug("REST request to get all JackpotDeposits");
+        Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
+        if(currentJackpot.isPresent()) {
+            return jackpotDepositRepository.findByJackpotIsCurrentJackpot(currentJackpot.get().getId());
+        }
+        // todo and format to the dto then sockets.
+        return null;
     }
 }
