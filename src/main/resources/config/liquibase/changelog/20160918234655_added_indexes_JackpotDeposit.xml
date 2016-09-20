@@ -19,10 +19,10 @@
             <column name="jackpot_id"/>
         </createIndex>
 
-        <!--<createIndex tableName="jackpot_deposit"-->
-                     <!--indexName="k_deposit_user_id">-->
-            <!--<column name="user_id"/>-->
-        <!--</createIndex>-->
+        <createIndex tableName="jackpot_deposit"
+                     indexName="k_deposit_user_id">
+            <column name="user_id"/>
+        </createIndex>
     </changeSet>
 
 </databaseChangeLog>
