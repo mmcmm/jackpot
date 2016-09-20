@@ -3,9 +3,7 @@
         "title": "User profile for [<b>{{username}}</b>]",
         "form": {
             "firstname": "First Name",
-            "firstname.placeholder": "Your first name",
             "lastname": "Last Name",
-            "lastname.placeholder": "Your last name",
             "language": "Language",
             "birthDay": "Birth Day",
             "birthMonth": "Birth Month",

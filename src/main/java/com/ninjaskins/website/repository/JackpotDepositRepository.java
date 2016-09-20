@@ -1,7 +1,6 @@
 package com.ninjaskins.website.repository;
 
 import com.ninjaskins.website.domain.JackpotDeposit;
-import com.ninjaskins.website.service.dto.AllJackpotDepositsDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -34,7 +33,7 @@ public interface JackpotDepositRepository extends JpaRepository<JackpotDeposit,L
     Integer takeFromCurrentUserCreditBalance(Integer credits);
 
     @Transactional(readOnly = true)
-    @Query("select jackpotDeposit from JackpotDeposit jackpotDeposit where jackpotDeposit.jackpot.id = ?1")
+    @Query("select jackpotDeposit from JackpotDeposit jackpotDeposit where jackpotDeposit.jackpot.id = ?1 order by jackpotDeposit.id desc")
     List<JackpotDeposit> findByJackpotIsCurrentJackpot (long currentJackpot);
 
     @Transactional(readOnly = true)

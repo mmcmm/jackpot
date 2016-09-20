@@ -10,8 +10,8 @@ import com.ninjaskins.website.repository.JackpotRepository;
 import com.ninjaskins.website.repository.UserRepository;
 import com.ninjaskins.website.security.SecurityUtils;
 import com.ninjaskins.website.service.JackpotRoundService;
-import com.ninjaskins.website.service.dto.AllJackpotDepositsDTO;
 import com.ninjaskins.website.service.dto.JackpotDepositDTO;
+import com.ninjaskins.website.service.dto.JackpotRoundDepositDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -86,13 +88,19 @@ public class JackpotDepositController {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public List<JackpotDeposit> getAllJackpotDeposits() {
+    public List<JackpotRoundDepositDTO> getAllJackpotDeposits() {
         log.debug("REST request to get all JackpotDeposits");
         Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
         if(currentJackpot.isPresent()) {
-            return jackpotDepositRepository.findByJackpotIsCurrentJackpot(currentJackpot.get().getId());
+            List<JackpotDeposit> jackpotDeposits = jackpotDepositRepository.findByJackpotIsCurrentJackpot(currentJackpot.get().getId());
+            List<JackpotRoundDepositDTO> jackpotRoundDepositDTOs = new ArrayList<>();
+            jackpotRoundDepositDTOs.add(new JackpotRoundDepositDTO(-1, currentJackpot.get().getHash()));
+            for (JackpotDeposit jackpotDeposit: jackpotDeposits) {
+                if(!Objects.equals(jackpotDeposit.getJackpot().getId(), currentJackpot.get().getId())) continue;
+                jackpotRoundDepositDTOs.add(new JackpotRoundDepositDTO(jackpotDeposit.getAmount(), jackpotDeposit.getUser().getLogin()));
+            }
+            return jackpotRoundDepositDTOs;
         }
-        // todo and format to the dto then sockets.
         return null;
     }
 }

@@ -1,12 +1,13 @@
 package com.ninjaskins.website.service.dto;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * A DTO for the CreditDeposit entity.
  */
-public class JackpotDepositDTO {
+public class JackpotDepositDTO implements Serializable {
 
     @NotNull
     private Integer amount;
@@ -38,7 +39,7 @@ public class JackpotDepositDTO {
 
     @Override
     public String toString() {
-        return "CreditDepositDTO{" +
+        return "JackpotDepositDTO{" +
             "amount='" + amount + "'" +
             '}';
     }
