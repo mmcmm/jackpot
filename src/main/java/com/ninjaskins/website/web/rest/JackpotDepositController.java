@@ -51,7 +51,9 @@ public class JackpotDepositController {
     @Inject
     private JackpotRepository jackpotRepository;
 
-    private final int MIN_DEPOSIT = 10;
+    private final int MIN_DEPOSIT_AMT = 10;
+
+    private final int MIN_DEPOSITS_NR = 10;
 
     /**
      * POST  /jackpot-deposits : Create a new jackpotDeposit.
@@ -69,11 +71,13 @@ public class JackpotDepositController {
         Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
         if (currentUser.isPresent() && DomainUtils.userCanDeposit(currentUser.get())) {
             Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
-            if (currentJackpot.isPresent() && DomainUtils.safeToJackpotDeposit(currentJackpot.get(), jackpotDepositDTO.getAmount(), MIN_DEPOSIT)) {
+            if (currentJackpot.isPresent() && DomainUtils.safeToJackpotDeposit(currentJackpot.get(), jackpotDepositDTO.getAmount(), MIN_DEPOSIT_AMT)) {
                 // create our jackpot deposit
-                return jackpotRoundService.jackpotDeposit(new JackpotDeposit(jackpotDepositDTO.getAmount(), currentUser.get(), currentJackpot.get()))
-                    ? new ResponseEntity<>(HttpStatus.OK)
-                    : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                if(jackpotRoundService.jackpotDeposit(new JackpotDeposit(jackpotDepositDTO.getAmount(), currentUser.get(), currentJackpot.get()))){
+
+                    return new ResponseEntity<>(HttpStatus.OK);
+                }
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -94,7 +98,6 @@ public class JackpotDepositController {
         if(currentJackpot.isPresent()) {
             List<JackpotDeposit> jackpotDeposits = jackpotDepositRepository.findByJackpotIsCurrentJackpot(currentJackpot.get().getId());
             List<JackpotRoundDepositDTO> jackpotRoundDepositDTOs = new ArrayList<>();
-            jackpotRoundDepositDTOs.add(new JackpotRoundDepositDTO(-1, currentJackpot.get().getHash()));
             for (JackpotDeposit jackpotDeposit: jackpotDeposits) {
                 if(!Objects.equals(jackpotDeposit.getJackpot().getId(), currentJackpot.get().getId())) continue;
                 jackpotRoundDepositDTOs.add(new JackpotRoundDepositDTO(jackpotDeposit.getAmount(), jackpotDeposit.getUser().getLogin()));
