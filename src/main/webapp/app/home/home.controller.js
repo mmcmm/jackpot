@@ -85,13 +85,11 @@
                 }
                 for (var user2 in vm.allJackpotDepositsUsers) {
                     if (vm.allJackpotDepositsUsers.hasOwnProperty(user2)) {
-                        var chance = (vm.allJackpotDepositsUsers[user2].amount / vm.totalJackpotDeposits).toFixed(4) * 100;
-                        console.log(vm.allJackpotDepositsUsers[user2].amount / vm.totalJackpotDeposits);
-                        vm.allJackpotDepositsUsers[user2].chance = chance;
+                        vm.allJackpotDepositsUsers[user2].chance =
+                            (vm.allJackpotDepositsUsers[user2].amount / vm.totalJackpotDeposits).toFixed(4) * 100;
                     }
                 }
             }
-            console.log(vm.allJackpotDepositsUsers);
         }
     }
 })();
