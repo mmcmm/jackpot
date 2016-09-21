@@ -31,17 +31,21 @@ public class Jackpot implements Serializable {
 
     @NotNull
     @Column(name = "fee", nullable = false)
-    private Integer fee;
+    private Integer fee = 0;
 
     @NotNull
-    @Size(max = 60)
-    @Column(name = "hash", length = 60, nullable = false)
+    @Size(max = 64)
+    @Column(name = "hash", length = 64, nullable = false)
     private String hash;
 
     @NotNull
     @Column(name = "created_date", nullable = false)
     @JsonIgnore
     private ZonedDateTime createdDate = ZonedDateTime.now();
+
+    @NotNull
+    @Column(name = "random_number", nullable = false)
+    private Double randomNumber;
 
     @ManyToOne
     private User winner;
@@ -104,6 +108,20 @@ public class Jackpot implements Serializable {
 
     public void setCreatedDate(ZonedDateTime createdDate) {
         this.createdDate = createdDate;
+    }
+
+
+    public Double getRandomNumber() {
+        return randomNumber;
+    }
+
+    public Jackpot randomNumber(Double randomNumber) {
+        this.randomNumber = randomNumber;
+        return this;
+    }
+
+    public void setRandomNumber(Double randomNumber) {
+        this.randomNumber = randomNumber;
     }
 
     public User getWinner() {

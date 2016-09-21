@@ -25,11 +25,15 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="fee" type="integer">
+            <column name="fee" type="integer" valueNumeric="0">
                 <constraints nullable="false" />
             </column>
 
-            <column name="hash" type="varchar(60)">
+            <column name="hash" type="varchar(64)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="random_number" type="double">
                 <constraints nullable="false" />
             </column>
 

@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
+import java.util.Optional;
 
 @Component
 public class ApplicationStartup implements ApplicationListener<ApplicationReadyEvent> {
@@ -27,10 +28,14 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent event) {
         log.debug("Run on Application Startup");
-
-        Jackpot jackpot = new Jackpot();
-        log.debug(DomainUtils.getSecureRandomNumber() + "aa");
-        return;
+        Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
+        if (!currentJackpot.isPresent()) {
+            double randomNumber = DomainUtils.getSecureRandomNumber();
+            Jackpot jackpot = new Jackpot();
+            jackpot.setHash(DomainUtils.getSHA256Hash(String.valueOf(randomNumber)));
+            jackpot.setRandomNumber(randomNumber);
+            jackpotRepository.save(jackpot);
+        }
     }
 
 }
