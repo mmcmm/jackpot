@@ -14,7 +14,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Transactional
-public interface JackpotDepositRepository extends JpaRepository<JackpotDeposit,Long> {
+public interface JackpotDepositRepository extends JpaRepository<JackpotDeposit, Long> {
 
     @Transactional(readOnly = true)
     @Query("select jackpotDeposit from JackpotDeposit jackpotDeposit where jackpotDeposit.user.login = ?#{principal.username}")
@@ -34,9 +34,9 @@ public interface JackpotDepositRepository extends JpaRepository<JackpotDeposit,L
 
     @Transactional(readOnly = true)
     @Query("select jackpotDeposit from JackpotDeposit jackpotDeposit where jackpotDeposit.jackpot.id = ?1 order by jackpotDeposit.id desc")
-    List<JackpotDeposit> findByJackpotIsCurrentJackpot (long currentJackpot);
+    List<JackpotDeposit> findByJackpotIsCurrentJackpot(long currentJackpot);
 
     @Transactional(readOnly = true)
-    List<JackpotDeposit> findAllByCreatedDateBefore (ZonedDateTime dateTime);
+    List<JackpotDeposit> findAllByCreatedDateBefore(ZonedDateTime dateTime);
 
 }

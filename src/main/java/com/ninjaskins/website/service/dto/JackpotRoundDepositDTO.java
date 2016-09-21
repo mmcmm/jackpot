@@ -20,6 +20,11 @@ public class JackpotRoundDepositDTO implements Serializable {
     public JackpotRoundDepositDTO() {
     }
 
+    public JackpotRoundDepositDTO(int amount, String user) {
+        this.amount = amount;
+        this.user = user;
+    }
+
     public int getAmount() {
         return amount;
     }
@@ -36,12 +41,6 @@ public class JackpotRoundDepositDTO implements Serializable {
         this.user = user;
     }
 
-    public JackpotRoundDepositDTO(int amount, String user)
-    {
-        this.amount = amount;
-        this.user = user;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -53,7 +52,7 @@ public class JackpotRoundDepositDTO implements Serializable {
 
         JackpotRoundDepositDTO JackpotRoundDepositDTO = (JackpotRoundDepositDTO) o;
 
-        if ( ! Objects.equals(amount, JackpotRoundDepositDTO.amount)) return false;
+        if (!Objects.equals(amount, JackpotRoundDepositDTO.amount)) return false;
 
         return true;
     }

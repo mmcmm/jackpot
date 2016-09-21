@@ -18,8 +18,7 @@ public class CreditDepositDTO implements Serializable {
     public CreditDepositDTO() {
     }
 
-    public CreditDepositDTO(Integer creditBalance, Integer depositCredits)
-    {
+    public CreditDepositDTO(Integer creditBalance, Integer depositCredits) {
         this.creditBalance = creditBalance;
         this.depositCredits = depositCredits;
     }
@@ -51,7 +50,7 @@ public class CreditDepositDTO implements Serializable {
 
         CreditDepositDTO creditDepositDTO = (CreditDepositDTO) o;
 
-        if ( ! Objects.equals(creditBalance, creditDepositDTO.creditBalance)) return false;
+        if (!Objects.equals(creditBalance, creditDepositDTO.creditBalance)) return false;
 
         return true;
     }

@@ -13,7 +13,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Transactional
-public interface CreditDepositRepository extends JpaRepository<CreditDeposit,Long> {
+public interface CreditDepositRepository extends JpaRepository<CreditDeposit, Long> {
 
     @Query("select creditDeposit from CreditDeposit creditDeposit where creditDeposit.user.login = ?#{principal.username}")
     List<CreditDeposit> findByUserIsCurrentUser();

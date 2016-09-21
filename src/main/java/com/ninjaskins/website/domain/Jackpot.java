@@ -62,17 +62,21 @@ public class Jackpot implements Serializable {
         return total;
     }
 
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
+
     public Jackpot total(Integer total) {
         this.total = total;
         return this;
     }
 
-    public void setTotal(Integer total) {
-        this.total = total;
-    }
-
     public Integer getFee() {
         return fee;
+    }
+
+    public void setFee(Integer fee) {
+        this.fee = fee;
     }
 
     public Jackpot fee(Integer fee) {
@@ -80,12 +84,12 @@ public class Jackpot implements Serializable {
         return this;
     }
 
-    public void setFee(Integer fee) {
-        this.fee = fee;
-    }
-
     public String getHash() {
         return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 
     public Jackpot hash(String hash) {
@@ -93,12 +97,12 @@ public class Jackpot implements Serializable {
         return this;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-
     public ZonedDateTime getCreatedDate() {
         return createdDate;
+    }
+
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
     public Jackpot created_date(ZonedDateTime createdDate) {
@@ -106,13 +110,12 @@ public class Jackpot implements Serializable {
         return this;
     }
 
-    public void setCreatedDate(ZonedDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-
     public Double getRandomNumber() {
         return randomNumber;
+    }
+
+    public void setRandomNumber(Double randomNumber) {
+        this.randomNumber = randomNumber;
     }
 
     public Jackpot randomNumber(Double randomNumber) {
@@ -120,21 +123,17 @@ public class Jackpot implements Serializable {
         return this;
     }
 
-    public void setRandomNumber(Double randomNumber) {
-        this.randomNumber = randomNumber;
-    }
-
     public User getWinner() {
         return winner;
+    }
+
+    public void setWinner(User user) {
+        this.winner = user;
     }
 
     public Jackpot winner(User user) {
         this.winner = user;
         return this;
-    }
-
-    public void setWinner(User user) {
-        this.winner = user;
     }
 
     @Override
@@ -146,7 +145,7 @@ public class Jackpot implements Serializable {
             return false;
         }
         Jackpot jackpot = (Jackpot) o;
-        if(jackpot.id == null || id == null) {
+        if (jackpot.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, jackpot.id);

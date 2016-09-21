@@ -61,17 +61,21 @@ public class CreditDeposit implements Serializable {
         return credits;
     }
 
+    public void setCredits(Integer credits) {
+        this.credits = credits;
+    }
+
     public CreditDeposit credits(Integer credits) {
         this.credits = credits;
         return this;
     }
 
-    public void setCredits(Integer credits) {
-        this.credits = credits;
-    }
-
     public PaymentMethods getMethod() {
         return method;
+    }
+
+    public void setMethod(PaymentMethods method) {
+        this.method = method;
     }
 
     public CreditDeposit method(PaymentMethods method) {
@@ -79,12 +83,12 @@ public class CreditDeposit implements Serializable {
         return this;
     }
 
-    public void setMethod(PaymentMethods method) {
-        this.method = method;
-    }
-
     public Double getPrice() {
         return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public CreditDeposit price(Double price) {
@@ -92,12 +96,12 @@ public class CreditDeposit implements Serializable {
         return this;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     public ZonedDateTime getCreatedDate() {
         return createdDate;
+    }
+
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
     public CreditDeposit created_date(ZonedDateTime createdDate) {
@@ -105,21 +109,17 @@ public class CreditDeposit implements Serializable {
         return this;
     }
 
-    public void setCreatedDate(ZonedDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
     public User getUser() {
         return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public CreditDeposit user(User user) {
         this.user = user;
         return this;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     @Override
@@ -131,7 +131,7 @@ public class CreditDeposit implements Serializable {
             return false;
         }
         CreditDeposit creditDeposit = (CreditDeposit) o;
-        if(creditDeposit.id == null || id == null) {
+        if (creditDeposit.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, creditDeposit.id);

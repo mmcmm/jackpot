@@ -17,6 +17,7 @@
         vm.allJackpotDeposits = null;
         vm.totalJackpotDeposits = null;
         vm.allJackpotDepositsUsers = {};
+        vm.jackpot = null;
         vm.account = null;
         vm.success = null;
         vm.jackpotRoundHash = null;

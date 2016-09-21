@@ -43,7 +43,9 @@ public class JackpotDeposit implements Serializable {
     @NotNull
     private Jackpot jackpot;
 
-    public JackpotDeposit() {}
+    public JackpotDeposit() {
+    }
+
     public JackpotDeposit(int amount, User user, Jackpot jackpot) {
         this.amount = amount;
         this.user = user;
@@ -66,17 +68,21 @@ public class JackpotDeposit implements Serializable {
         return createdDate;
     }
 
+    public void setCreatedDate(ZonedDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
     public JackpotDeposit created_date(ZonedDateTime createdDate) {
         this.createdDate = createdDate;
         return this;
     }
 
-    public void setCreatedDate(ZonedDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
     public User getUser() {
         return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public JackpotDeposit user(User user) {
@@ -84,21 +90,17 @@ public class JackpotDeposit implements Serializable {
         return this;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Jackpot getJackpot() {
         return jackpot;
+    }
+
+    public void setJackpot(Jackpot jackpot) {
+        this.jackpot = jackpot;
     }
 
     public JackpotDeposit jackpot(Jackpot jackpot) {
         this.jackpot = jackpot;
         return this;
-    }
-
-    public void setJackpot(Jackpot jackpot) {
-        this.jackpot = jackpot;
     }
 
     @Override
@@ -110,7 +112,7 @@ public class JackpotDeposit implements Serializable {
             return false;
         }
         JackpotDeposit jackpotDeposit = (JackpotDeposit) o;
-        if(jackpotDeposit.id == null || id == null) {
+        if (jackpotDeposit.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, jackpotDeposit.id);

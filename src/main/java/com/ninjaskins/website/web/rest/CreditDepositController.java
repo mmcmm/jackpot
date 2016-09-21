@@ -29,14 +29,11 @@ import java.util.Optional;
 public class CreditDepositController {
 
     private final Logger log = LoggerFactory.getLogger(CreditDepositController.class);
-
+    private final int MIN_DEPOSIT = 100;
     @Inject
     private CreditDepositRepository creditDepositRepository;
-
     @Inject
     private UserRepository userRepository;
-
-    private final int MIN_DEPOSIT = 100;
 
     /**
      * GET  /credit-deposits : get all the creditDeposits.

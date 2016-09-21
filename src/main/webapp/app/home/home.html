@@ -89,15 +89,14 @@
                             </div>
                             <ul class="list-group">
                                 <li class="list-group-item" ng-repeat="jackpotDeposit in vm.allJackpotDeposits">
-                                    <div ng-if="jackpotDeposit.amount >= 1">
-                                        <strong>{{jackpotDeposit.user}}</strong>
-                                        <span>Deposited</span>
-                                        <span class="badge">{{jackpotDeposit.amount | number}}</span>
-                                    </div>
-                                    <div ng-if="jackpotDeposit.amount == -1">
-                                        <span data-translate="home.jackpot.newround">A new round has begun! Round hash:</span>
-                                        <span class="badge">{{jackpotDeposit.user}}</span>
-                                    </div>
+                                    <strong>{{jackpotDeposit.user}}</strong>
+                                    <span>Deposited</span>
+                                    <span class="badge">{{jackpotDeposit.amount | number}}</span>
+                                </li>
+                                <li class="list-group-item jackpot-newround">
+                                    <span data-translate="home.jackpot.newround" translate-value-hash="{{vm.jackpot.hash}}">
+                                        A new round has begun! Round hash: <span class="text-lowercase">{{vm.jackpot.hash}}</span>
+                                    </span>
                                 </li>
                             </ul>
                         </div>

@@ -4,7 +4,6 @@ import com.ninjaskins.website.domain.Jackpot;
 import com.ninjaskins.website.domain.JackpotDeposit;
 import com.ninjaskins.website.repository.JackpotDepositRepository;
 import com.ninjaskins.website.repository.JackpotRepository;
-import com.ninjaskins.website.service.dto.JackpotRoundDepositDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -13,9 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -51,7 +48,7 @@ public class JackpotRoundService {
         ZonedDateTime now = ZonedDateTime.now();
         List<JackpotDeposit> jackpotDeposits = jackpotDepositRepository.findAllByCreatedDateBefore(now.minusDays(3));
         for (JackpotDeposit jackpotDeposit : jackpotDeposits) {
-            if(jackpotDeposit.getJackpot().getWinner() == null) continue;
+            if (jackpotDeposit.getJackpot().getWinner() == null) continue;
             log.debug("Deleting older jackpot deposits {}", jackpotDeposit.getId());
             jackpotDepositRepository.delete(jackpotDeposit);
         }
@@ -69,7 +66,7 @@ public class JackpotRoundService {
         List<Jackpot> jackpots = jackpotRepository.findAllByCreatedDateBefore(now.minusDays(3));
         for (Jackpot jackpot : jackpots) {
             log.debug("Deleting older jackpot {}", jackpot.getId());
-            if(jackpot.getWinner() == null) continue;
+            if (jackpot.getWinner() == null) continue;
             jackpotRepository.delete(jackpot);
         }
     }

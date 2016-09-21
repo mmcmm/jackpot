@@ -38,22 +38,16 @@ import java.util.Optional;
 public class JackpotDepositController {
 
     private final Logger log = LoggerFactory.getLogger(JackpotDepositController.class);
-
+    private final int MIN_DEPOSIT_AMT = 10;
+    private final int MIN_DEPOSITS_NR = 10;
     @Inject
     private JackpotDepositRepository jackpotDepositRepository;
-
     @Inject
     private JackpotRoundService jackpotRoundService;
-
     @Inject
     private UserRepository userRepository;
-
     @Inject
     private JackpotRepository jackpotRepository;
-
-    private final int MIN_DEPOSIT_AMT = 10;
-
-    private final int MIN_DEPOSITS_NR = 10;
 
     /**
      * POST  /jackpot-deposits : Create a new jackpotDeposit.
@@ -73,7 +67,7 @@ public class JackpotDepositController {
             Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
             if (currentJackpot.isPresent() && DomainUtils.safeToJackpotDeposit(currentJackpot.get(), jackpotDepositDTO.getAmount(), MIN_DEPOSIT_AMT)) {
                 // create our jackpot deposit
-                if(jackpotRoundService.jackpotDeposit(new JackpotDeposit(jackpotDepositDTO.getAmount(), currentUser.get(), currentJackpot.get()))){
+                if (jackpotRoundService.jackpotDeposit(new JackpotDeposit(jackpotDepositDTO.getAmount(), currentUser.get(), currentJackpot.get()))) {
 
                     return new ResponseEntity<>(HttpStatus.OK);
                 }
@@ -95,11 +89,11 @@ public class JackpotDepositController {
     public List<JackpotRoundDepositDTO> getAllJackpotDeposits() {
         log.debug("REST request to get all JackpotDeposits");
         Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
-        if(currentJackpot.isPresent()) {
+        if (currentJackpot.isPresent()) {
             List<JackpotDeposit> jackpotDeposits = jackpotDepositRepository.findByJackpotIsCurrentJackpot(currentJackpot.get().getId());
             List<JackpotRoundDepositDTO> jackpotRoundDepositDTOs = new ArrayList<>();
-            for (JackpotDeposit jackpotDeposit: jackpotDeposits) {
-                if(!Objects.equals(jackpotDeposit.getJackpot().getId(), currentJackpot.get().getId())) continue;
+            for (JackpotDeposit jackpotDeposit : jackpotDeposits) {
+                if (!Objects.equals(jackpotDeposit.getJackpot().getId(), currentJackpot.get().getId())) continue;
                 jackpotRoundDepositDTOs.add(new JackpotRoundDepositDTO(jackpotDeposit.getAmount(), jackpotDeposit.getUser().getLogin()));
             }
             return jackpotRoundDepositDTOs;

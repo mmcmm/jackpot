@@ -27,7 +27,7 @@ public class JackpotDepositDTO implements Serializable {
 
         JackpotDepositDTO jackpotDepositDTO = (JackpotDepositDTO) o;
 
-        if ( ! Objects.equals(amount, jackpotDepositDTO.amount)) return false;
+        if (!Objects.equals(amount, jackpotDepositDTO.amount)) return false;
 
         return true;
     }
