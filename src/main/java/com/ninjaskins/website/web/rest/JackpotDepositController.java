@@ -38,13 +38,19 @@ import java.util.Optional;
 public class JackpotDepositController {
 
     private final Logger log = LoggerFactory.getLogger(JackpotDepositController.class);
+
     private final int MIN_DEPOSIT_AMT = 10;
+
     private final int MIN_DEPOSITS_NR = 10;
+
     @Inject
     private JackpotDepositRepository jackpotDepositRepository;
+
     @Inject
+
     private JackpotRoundService jackpotRoundService;
     @Inject
+
     private UserRepository userRepository;
     @Inject
     private JackpotRepository jackpotRepository;
