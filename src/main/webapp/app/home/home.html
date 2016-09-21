@@ -8,21 +8,23 @@
             </p>
 
             <div ng-switch="vm.isAuthenticated()">
-
                 <div class="row">
                     <div class="col-xs-4">
-                        <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
+                        <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message"
+                             translate-values="{username: '{{vm.account.login}}'}">
                             You are logged in as user "{{vm.account.login}}".
                         </div>
                         <div class="alert alert-warning" ng-switch-when="false">
-                    <span data-translate="global.messages.info.signin" translate-compile>
-                        Please <a class="alert-link" href="" ng-click="vm.login()">sign in</a>!
-                    </span>
+                            <span data-translate="global.messages.info.signin" translate-compile>
+                                Please <a class="alert-link" href="" ng-click="vm.login()">sign in</a>!
+                            </span>
                             <span data-translate="global.messages.info.register" translate-compile>
-                        You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
-                    </span>
+                                You don't have an account yet? <a class="alert-link"
+                                                          ui-sref="register">Register a new account</a>
+                             </span>
                         </div>
-                        <form name="form" role="form" id="jackpot-deposit-form" novalidate ng-submit="vm.save()" show-validation
+                        <form name="form" role="form" id="jackpot-deposit-form" novalidate ng-submit="vm.save()"
+                              show-validation
                               ng-switch-when="true">
                             <div class="form-group">
                                 <p class="lead" ng-if="vm.creditDeposit.creditBalance != -1"
@@ -57,7 +59,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" ng-disabled="form.$invalid || vm.isSaving" class="btn btn-primary"
+                            <button type="submit" ng-disabled="form.$invalid || vm.isSaving || vm.jackpot.isDrawing" class="btn btn-primary"
                                     data-translate="global.menu.account.deposit">Deposit
                             </button>
                         </form>
@@ -81,10 +83,14 @@
                         </div>
                     </div>
                     <div class="col-xs-7 col-md-offset-1">
-                        <div id="jackpot-deposits" class="table-responsive">
+                        <div id="jackpot-deposits">
+                            <uib-progressbar min="0" max="vm.jackpot.minDepositsNr" value="vm.allJackpotDeposits.length" class="progress-striped active" type="success">
+                                <span>{{vm.allJackpotDeposits.length}}/{{vm.jackpot.minDepositsNr}}</span>
+                            </uib-progressbar>
                             <div class="alert alert-info">
-                                <strong data-translate="home.jackpot.totaljackpot" translate-values="{total: '{{vm.totalJackpotDeposits}}'}">
-                                    Total: {{vm.totalJackpotDeposits | number}}
+                                <strong data-translate="home.jackpot.totaljackpot"
+                                        translate-values="{total: '{{vm.totalJackpotDeposits | number}}', fee: '{{vm.jackpotFee | number}}'}">
+                                    Jackpot: {{vm.totalJackpotDeposits | number}} / Fee: {{vm.jackpotFee | number}}
                                 </strong>
                             </div>
                             <ul class="list-group">
@@ -94,7 +100,8 @@
                                     <span class="badge">{{jackpotDeposit.amount | number}}</span>
                                 </li>
                                 <li class="list-group-item jackpot-newround">
-                                    <span data-translate="home.jackpot.newround" translate-value-hash="{{vm.jackpot.hash}}">
+                                    <span data-translate="home.jackpot.newround"
+                                          translate-value-hash="{{vm.jackpot.hash}}">
                                         A new round has begun! Round hash: <span class="text-lowercase">{{vm.jackpot.hash}}</span>
                                     </span>
                                 </li>

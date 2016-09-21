@@ -45,6 +45,17 @@ public class CreditDeposit implements Serializable {
     @JsonIgnore
     private ZonedDateTime createdDate = ZonedDateTime.now();
 
+    public CreditDeposit(){
+
+    }
+
+    public CreditDeposit(int credits, PaymentMethods paymentMethod, double price, User user){
+        this.credits = credits;
+        method = paymentMethod;
+        this.price = price;
+        this.user = user;
+    }
+
     @ManyToOne
     @NotNull
     private User user;

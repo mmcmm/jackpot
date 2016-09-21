@@ -1,6 +1,8 @@
 package com.ninjaskins.website.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.ninjaskins.website.domain.CreditDeposit;
+import com.ninjaskins.website.domain.enumeration.PaymentMethods;
 import com.ninjaskins.website.domain.util.DomainUtils;
 import com.ninjaskins.website.repository.CreditDepositRepository;
 import com.ninjaskins.website.repository.UserRepository;
@@ -72,13 +74,14 @@ public class CreditDepositController {
     @Timed
     public ResponseEntity<CreditDepositDTO> createCreditDeposit(@Valid @RequestBody CreditDepositDTO creditDepositDTO) throws URISyntaxException {
         log.debug("REST request to update CreditDeposit Balance: {}", creditDepositDTO);
-        return userRepository
-            .findOneByLogin(SecurityUtils.getCurrentUserLogin())
+        return userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin())
             .map(u -> {
                 if (DomainUtils.userCanDeposit(u)) {
-                    return Optional.of(creditDepositRepository.updateCurrentUserCreditBalance(creditDepositDTO.getDepositCredits()))
-                        .map(cb -> new ResponseEntity<>(new CreditDepositDTO(creditDepositDTO.getCreditBalance() + creditDepositDTO.getDepositCredits(), MIN_DEPOSIT), HttpStatus.OK))
-                        .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+                    // todo put this on a service
+                    CreditDeposit creditDeposit = new CreditDeposit(creditDepositDTO.getDepositCredits(), PaymentMethods.G2APAY, 0.0, u);
+                    creditDepositRepository.updateCurrentUserCreditBalance(creditDepositDTO.getDepositCredits());
+                    creditDepositRepository.save(creditDeposit);
+                    return new ResponseEntity<>(new CreditDepositDTO(creditDepositDTO.getCreditBalance() + creditDepositDTO.getDepositCredits(), MIN_DEPOSIT), HttpStatus.OK);
                 }
                 return new ResponseEntity<>(new CreditDepositDTO(-1, MIN_DEPOSIT), HttpStatus.OK);
             })

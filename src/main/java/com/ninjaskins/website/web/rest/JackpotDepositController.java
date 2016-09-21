@@ -1,6 +1,7 @@
 package com.ninjaskins.website.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.ninjaskins.website.config.DomainConstants;
 import com.ninjaskins.website.domain.Jackpot;
 import com.ninjaskins.website.domain.JackpotDeposit;
 import com.ninjaskins.website.domain.User;
@@ -40,19 +41,15 @@ public class JackpotDepositController {
 
     private final Logger log = LoggerFactory.getLogger(JackpotDepositController.class);
 
-    private final int MIN_DEPOSIT_AMT = 10;
-
-    private final int MIN_DEPOSITS_NR = 10;
-
     @Inject
     private JackpotDepositRepository jackpotDepositRepository;
 
     @Inject
-
     private JackpotRoundService jackpotRoundService;
-    @Inject
 
+    @Inject
     private UserRepository userRepository;
+
     @Inject
     private JackpotRepository jackpotRepository;
 
@@ -72,10 +69,16 @@ public class JackpotDepositController {
         Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
         if (currentUser.isPresent() && DomainUtils.userCanDeposit(currentUser.get())) {
             Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
-            if (currentJackpot.isPresent() && DomainUtils.safeToJackpotDeposit(currentJackpot.get(), jackpotDepositDTO.getAmount(), MIN_DEPOSIT_AMT)) {
-                // create our jackpot deposit
+            if (currentJackpot.isPresent() && DomainUtils.safeToJackpotDeposit(currentJackpot.get(), jackpotDepositDTO.getAmount(), currentUser.get().getCredits())) {
+                // create our jackpot deposit and select winner todo clean this up with optional and sockets
                 if (jackpotRoundService.jackpotDeposit(new JackpotDeposit(jackpotDepositDTO.getAmount(), currentUser.get(), currentJackpot.get()))) {
-
+                    if (jackpotDepositRepository.countByJackpotIsCurrentJackpot(currentJackpot.get().getId()) >= DomainConstants.JACKPOT_MIN_DEPOSITS_NR) {
+                       Jackpot newJackpot = jackpotRoundService.selectWinner(currentJackpot.get());
+                        if (newJackpot == null) {
+                            log.error("Failed to select Jackpot Winner : {}", currentJackpot.get());
+                            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                        }
+                    }
                     return new ResponseEntity<>(HttpStatus.OK);
                 }
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -122,7 +125,7 @@ public class JackpotDepositController {
         Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
         if (currentJackpot.isPresent()) {
             Jackpot jackpot = currentJackpot.get();
-            CurrentJackpotDTO currentJackpotDTO = new CurrentJackpotDTO(jackpot.getHash(), MIN_DEPOSITS_NR);
+            CurrentJackpotDTO currentJackpotDTO = new CurrentJackpotDTO(jackpot.getHash(), jackpot.isIsDrawing());
             if (jackpot.getWinner() != null) {
                 currentJackpotDTO.setWinner(jackpot.getWinner().getLogin());
             }

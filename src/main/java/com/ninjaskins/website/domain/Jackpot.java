@@ -26,14 +26,6 @@ public class Jackpot implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "total", nullable = false)
-    private Integer total = 0;
-
-    @NotNull
-    @Column(name = "fee", nullable = false)
-    private Integer fee = 0;
-
-    @NotNull
     @Size(max = 64)
     @Column(name = "hash", length = 64, nullable = false)
     private String hash;
@@ -47,6 +39,10 @@ public class Jackpot implements Serializable {
     @Column(name = "random_number", nullable = false)
     private Double randomNumber;
 
+    @NotNull
+    @Column(name = "is_drawing", nullable = false)
+    private Boolean isDrawing = false;
+
     @ManyToOne
     private User winner;
 
@@ -58,29 +54,11 @@ public class Jackpot implements Serializable {
         this.id = id;
     }
 
-    public Integer getTotal() {
-        return total;
-    }
-
-    public void setTotal(Integer total) {
-        this.total = total;
-    }
-
     public Jackpot total(Integer total) {
-        this.total = total;
         return this;
     }
 
-    public Integer getFee() {
-        return fee;
-    }
-
-    public void setFee(Integer fee) {
-        this.fee = fee;
-    }
-
     public Jackpot fee(Integer fee) {
-        this.fee = fee;
         return this;
     }
 
@@ -123,6 +101,19 @@ public class Jackpot implements Serializable {
         return this;
     }
 
+    public Boolean isIsDrawing() {
+        return isDrawing;
+    }
+
+    public Jackpot isDrawing(Boolean isDrawing) {
+        this.isDrawing = isDrawing;
+        return this;
+    }
+
+    public void setIsDrawing(Boolean isDrawing) {
+        this.isDrawing = isDrawing;
+    }
+
     public User getWinner() {
         return winner;
     }
@@ -160,8 +151,6 @@ public class Jackpot implements Serializable {
     public String toString() {
         return "Jackpot{" +
             "id=" + id +
-            ", total='" + total + "'" +
-            ", fee='" + fee + "'" +
             ", hash='" + hash + "'" +
             ", created_date='" + createdDate + "'" +
             '}';

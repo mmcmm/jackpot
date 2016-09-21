@@ -37,6 +37,10 @@ public interface JackpotDepositRepository extends JpaRepository<JackpotDeposit, 
     List<JackpotDeposit> findByJackpotIsCurrentJackpot(long currentJackpot);
 
     @Transactional(readOnly = true)
+    @Query("select count(*) from JackpotDeposit jackpotDeposit where jackpotDeposit.jackpot.id = ?1")
+    int countByJackpotIsCurrentJackpot(long currentJackpot);
+
+    @Transactional(readOnly = true)
     List<JackpotDeposit> findAllByCreatedDateBefore(ZonedDateTime dateTime);
 
 }

@@ -13,7 +13,7 @@
             "total": "Total",
             "user": "User",
             "chance": "Chance",
-            "totaljackpot": "Jackpot Total: {{total | number}}",
+            "totaljackpot": "Jackpot: {{total | number}} / Fee: {{fee | number}}",
             "newround": "A new round has begun! Round hash:  <span class=\"text-lowercase\">{{hash}}</span>",
             "fairgame": "Fair Game"
         }

@@ -20,6 +20,9 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
     @Inject
     private JackpotRepository jackpotRepository;
 
+    @Inject
+    private JackpotRoundService jackpotRoundService;
+
     /**
      * This event is executed as late as conceivably possible to indicate that
      * the application is ready to service requests.
@@ -30,11 +33,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         log.debug("Run on Application Startup");
         Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
         if (!currentJackpot.isPresent()) {
-            double randomNumber = DomainUtils.getSecureRandomNumber();
-            Jackpot jackpot = new Jackpot();
-            jackpot.setHash(DomainUtils.getSHA256Hash(String.valueOf(randomNumber)));
-            jackpot.setRandomNumber(randomNumber);
-            jackpotRepository.save(jackpot);
+            jackpotRoundService.addTheNextJackpot();
         }
     }
 

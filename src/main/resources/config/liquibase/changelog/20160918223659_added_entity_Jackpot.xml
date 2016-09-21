@@ -21,13 +21,6 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="total" type="integer" valueNumeric="0">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="fee" type="integer" valueNumeric="0">
-                <constraints nullable="false" />
-            </column>
 
             <column name="hash" type="varchar(64)">
                 <constraints nullable="false" />
@@ -38,6 +31,10 @@
             </column>
 
             <column name="created_date" type="timestamp" defaultValueDate="${now}">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="is_drawing" type="bit" valueBoolean="false">
                 <constraints nullable="false" />
             </column>
 

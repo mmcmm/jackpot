@@ -18,6 +18,8 @@
         vm.totalJackpotDeposits = null;
         vm.allJackpotDepositsUsers = {};
         vm.jackpot = CurrentJackpot.get();
+        vm.jackpotFee = null;
+        vm.jackpotProgressStyle = null;
         vm.account = null;
         vm.success = null;
         vm.jackpotRoundHash = null;
@@ -73,10 +75,6 @@
         function calculateJackpotDepositsData() {
             if (vm.allJackpotDeposits.length) {
                 for (var index = 0; index < vm.allJackpotDeposits.length; index++) {
-                    if (vm.allJackpotDeposits[index].amount == -1) {
-                        vm.jackpotRoundHash = vm.allJackpotDeposits[index].user;
-                        continue;
-                    }
                     vm.totalJackpotDeposits += vm.allJackpotDeposits[index].amount;
                     var user = vm.allJackpotDeposits[index].user;
                     if (typeof vm.allJackpotDepositsUsers[user] === 'undefined') {
@@ -90,6 +88,8 @@
                             (vm.allJackpotDepositsUsers[user2].amount / vm.totalJackpotDeposits).toFixed(4) * 100;
                     }
                 }
+                vm.jackpotFee = Math.floor(vm.totalJackpotDeposits * vm.jackpot.percentFee);
+                vm.totalJackpotDeposits -= vm.jackpotFee;
             }
         }
     }

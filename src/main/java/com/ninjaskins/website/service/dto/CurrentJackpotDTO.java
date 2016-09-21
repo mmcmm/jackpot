@@ -1,6 +1,7 @@
 package com.ninjaskins.website.service.dto;
 
 import com.ninjaskins.website.config.Constants;
+import com.ninjaskins.website.config.DomainConstants;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -18,18 +19,24 @@ public class CurrentJackpotDTO implements Serializable {
     private String hash;
 
     @NotNull
-    private int minDepositsNr;
+    private int minDepositsNr = DomainConstants.JACKPOT_MIN_DEPOSITS_NR;
+
+    @NotNull
+    private float percentFee = DomainConstants.JACKPOT_PERCENT_FEE;
 
     @Pattern(regexp = Constants.LOGIN_REGEX)
     @Size(min = 1, max = 100)
     private String winner = null;
 
+    @NotNull
+    private Boolean isDrawing;
+
     public CurrentJackpotDTO() {
     }
 
-    public CurrentJackpotDTO(String hash, int minDepositsNr){
+    public CurrentJackpotDTO(String hash, Boolean isDrawing){
         this.hash = hash;
-        this.minDepositsNr = minDepositsNr;
+        this.isDrawing = isDrawing;
     }
 
     public String getHash() {
@@ -54,6 +61,22 @@ public class CurrentJackpotDTO implements Serializable {
 
     public void setWinner(String winner) {
         this.winner = winner;
+    }
+
+    public float getPercentFee() {
+        return percentFee;
+    }
+
+    public void setPercentFee(float percentFee) {
+        this.percentFee = percentFee;
+    }
+
+    public Boolean getDrawing() {
+        return isDrawing;
+    }
+
+    public void setDrawing(Boolean drawing) {
+        isDrawing = drawing;
     }
 
     @Override
@@ -83,6 +106,7 @@ public class CurrentJackpotDTO implements Serializable {
             "hash='" + hash + "'" +
             "winner='" + winner + "'" +
             "minDepositsNr='" + minDepositsNr + "'" +
+            "percentFee='" + percentFee + "'" +
             '}';
     }
 }
