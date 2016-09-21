@@ -4,6 +4,7 @@ import com.ninjaskins.website.domain.Jackpot;
 import com.ninjaskins.website.domain.JackpotDeposit;
 import com.ninjaskins.website.repository.JackpotDepositRepository;
 import com.ninjaskins.website.repository.JackpotRepository;
+import com.ninjaskins.website.service.dto.JackpotRoundDepositDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
