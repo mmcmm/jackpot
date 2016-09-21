@@ -37,4 +37,28 @@
             }
         });
     }
+
+
+    angular
+        .module('ninjaskinsApp')
+        .factory('CurrentJackpot', CurrentJackpot);
+
+    CurrentJackpot.$inject = ['$resource'];
+
+    function CurrentJackpot ($resource) {
+        var resourceUrl =  'api/jackpot';
+
+        return $resource(resourceUrl, {}, {
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    if (data) {
+                        data = angular.fromJson(data);
+                    }
+                    return data;
+                }
+            }
+        });
+    }
+
 })();

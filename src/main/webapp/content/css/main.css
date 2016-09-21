@@ -405,3 +405,7 @@ Social Buttons
 .help-block {
     font-size: 85%;
 }
+
+#jackpot-deposits .list-group-item > .badge{
+    float: none;
+}

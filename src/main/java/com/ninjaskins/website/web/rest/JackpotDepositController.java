@@ -10,6 +10,7 @@ import com.ninjaskins.website.repository.JackpotRepository;
 import com.ninjaskins.website.repository.UserRepository;
 import com.ninjaskins.website.security.SecurityUtils;
 import com.ninjaskins.website.service.JackpotRoundService;
+import com.ninjaskins.website.service.dto.CurrentJackpotDTO;
 import com.ninjaskins.website.service.dto.JackpotDepositDTO;
 import com.ninjaskins.website.service.dto.JackpotRoundDepositDTO;
 import org.slf4j.Logger;
@@ -103,6 +104,29 @@ public class JackpotDepositController {
                 jackpotRoundDepositDTOs.add(new JackpotRoundDepositDTO(jackpotDeposit.getAmount(), jackpotDeposit.getUser().getLogin()));
             }
             return jackpotRoundDepositDTOs;
+        }
+        return null;
+    }
+
+    /**
+     * GET  /jackpot : get the current jackpot data.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the current jackpot data in body
+     */
+    @RequestMapping(value = "/jackpot",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public CurrentJackpotDTO getCurrentJackpot() {
+        log.debug("REST request to get the current Jackpot");
+        Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
+        if (currentJackpot.isPresent()) {
+            Jackpot jackpot = currentJackpot.get();
+            CurrentJackpotDTO currentJackpotDTO = new CurrentJackpotDTO(jackpot.getHash(), MIN_DEPOSITS_NR);
+            if (jackpot.getWinner() != null) {
+                currentJackpotDTO.setWinner(jackpot.getWinner().getLogin());
+            }
+            return currentJackpotDTO;
         }
         return null;
     }

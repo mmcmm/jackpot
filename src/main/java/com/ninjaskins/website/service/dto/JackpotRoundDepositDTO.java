@@ -1,7 +1,11 @@
 package com.ninjaskins.website.service.dto;
 
+import com.ninjaskins.website.config.Constants;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -15,6 +19,8 @@ public class JackpotRoundDepositDTO implements Serializable {
     private int amount;
 
     @NotNull
+    @Pattern(regexp = Constants.LOGIN_REGEX)
+    @Size(min = 1, max = 100)
     private String user;
 
     public JackpotRoundDepositDTO() {

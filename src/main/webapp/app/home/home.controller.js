@@ -5,9 +5,9 @@
         .module('ninjaskinsApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'JackpotDeposit', 'CreditDeposit', 'AllJackpotDeposit'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'JackpotDeposit', 'CreditDeposit', 'AllJackpotDeposit', 'CurrentJackpot'];
 
-    function HomeController($scope, Principal, LoginService, $state, JackpotDeposit, CreditDeposit, AllJackpotDeposit) {
+    function HomeController($scope, Principal, LoginService, $state, JackpotDeposit, CreditDeposit, AllJackpotDeposit, CurrentJackpot) {
         var vm = this;
 
         vm.error = null;
@@ -17,7 +17,7 @@
         vm.allJackpotDeposits = null;
         vm.totalJackpotDeposits = null;
         vm.allJackpotDepositsUsers = {};
-        vm.jackpot = null;
+        vm.jackpot = CurrentJackpot.get();
         vm.account = null;
         vm.success = null;
         vm.jackpotRoundHash = null;
