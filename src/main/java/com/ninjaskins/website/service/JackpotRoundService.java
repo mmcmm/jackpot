@@ -44,8 +44,6 @@ public class JackpotRoundService {
     }
 
     public Jackpot selectWinner(Jackpot currentJackpot) {
-        currentJackpot.setIsDrawing(true);
-        jackpotRepository.save(currentJackpot);
         try {
             List<JackpotDeposit> jackpotDeposits = jackpotDepositRepository.findByJackpotIsCurrentJackpot(currentJackpot.getId());
             Future<User> winner = getWinnerUser(jackpotDeposits, currentJackpot.getRandomNumber());
@@ -53,7 +51,6 @@ public class JackpotRoundService {
             assert winner != null;
             while (!winner.isDone()) Thread.sleep(10);
             currentJackpot.setWinner(winner.get());
-            currentJackpot.setIsDrawing(false);
             jackpotRepository.addJackpotPrizeToWinnerUserCreditBalance(DomainUtils.CalculateJackpotWinning(jackpotDeposits), winner.get().getLogin());
             jackpotRepository.save(currentJackpot);
             return addTheNextJackpot();  // we insert a new jackpot

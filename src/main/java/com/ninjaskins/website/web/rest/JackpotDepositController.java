@@ -133,7 +133,7 @@ public class JackpotDepositController {
         Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
         if (currentJackpot.isPresent()) {
             Jackpot jackpot = currentJackpot.get();
-            CurrentJackpotDTO currentJackpotDTO = new CurrentJackpotDTO(jackpot.getHash(), jackpot.isIsDrawing());
+            CurrentJackpotDTO currentJackpotDTO = new CurrentJackpotDTO(jackpot.getHash());
             if (jackpot.getWinner() != null) {
                 currentJackpotDTO.setWinner(jackpot.getWinner().getLogin());
             }

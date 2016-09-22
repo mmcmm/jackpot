@@ -39,10 +39,6 @@ public class Jackpot implements Serializable {
     @Column(name = "random_number", nullable = false)
     private Double randomNumber;
 
-    @NotNull
-    @Column(name = "is_drawing", nullable = false)
-    private Boolean isDrawing = false;
-
     @ManyToOne
     private User winner;
 
@@ -93,17 +89,8 @@ public class Jackpot implements Serializable {
         return this;
     }
 
-    public Boolean isIsDrawing() {
-        return isDrawing;
-    }
-
     public Jackpot isDrawing(Boolean isDrawing) {
-        this.isDrawing = isDrawing;
         return this;
-    }
-
-    public void setIsDrawing(Boolean isDrawing) {
-        this.isDrawing = isDrawing;
     }
 
     public User getWinner() {

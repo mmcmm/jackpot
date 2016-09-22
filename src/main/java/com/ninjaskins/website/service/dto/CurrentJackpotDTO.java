@@ -28,15 +28,11 @@ public class CurrentJackpotDTO implements Serializable {
     @Size(min = 1, max = 100)
     private String winner = null;
 
-    @NotNull
-    private Boolean isDrawing;
-
     public CurrentJackpotDTO() {
     }
 
-    public CurrentJackpotDTO(String hash, Boolean isDrawing){
+    public CurrentJackpotDTO(String hash){
         this.hash = hash;
-        this.isDrawing = isDrawing;
     }
 
     public String getHash() {
@@ -69,14 +65,6 @@ public class CurrentJackpotDTO implements Serializable {
 
     public void setPercentFee(float percentFee) {
         this.percentFee = percentFee;
-    }
-
-    public Boolean getDrawing() {
-        return isDrawing;
-    }
-
-    public void setDrawing(Boolean drawing) {
-        isDrawing = drawing;
     }
 
     @Override

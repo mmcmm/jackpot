@@ -34,10 +34,6 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="is_drawing" type="bit" valueBoolean="false">
-                <constraints nullable="false" />
-            </column>
-
             <column name="winner_id" type="bigint">
                 <constraints nullable="true" />
             </column>
