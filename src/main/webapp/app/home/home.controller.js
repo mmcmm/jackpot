@@ -20,6 +20,7 @@
         vm.jackpot = CurrentJackpot.get();
         vm.jackpotFee = null;
         vm.jackpotProgressStyle = null;
+        vm.jackpotIsDrawing = null;
         vm.account = null;
         vm.success = null;
         vm.jackpotRoundHash = null;
