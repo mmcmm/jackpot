@@ -1,9 +1,22 @@
 {
     "home": {
-        "title": "Bienvenido a Ninja Skins!",
-        "subtitle": "Entrar en el juego y ganar: ",
+        "title": "Welcome to Ninja Skins!",
+        "subtitle": "Join the game and win: ",
         "logged": {
-            "message": "EstÃ¡ conectado como \"{{username}}\"."
+            "message": "You are logged in as user \"{{username}}\"."
+        },
+        "jackpot": {
+            "balance": "Balance: {{balance | number}}",
+            "min": "Minimum deposit is {{min | number}}",
+            "out": "Out of balance!",
+            "amount": "Amount",
+            "total": "Total",
+            "user": "User",
+            "chance": "Chance",
+            "totaljackpot": "Jackpot: {{total | number}} / Fee: {{fee | number}}",
+            "newround": "A new round has begun! Round hash:  <span class=\"text-lowercase\">{{hash}}</span>",
+            "winner": "Winner: ",
+            "fairgame": "Fair Game"
         }
     }
 }
