@@ -409,3 +409,7 @@ Social Buttons
 #jackpot-deposits .list-group-item > .badge{
     float: none;
 }
+
+#jackpot-winround {
+    display: none;
+}

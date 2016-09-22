@@ -93,13 +93,19 @@
                                     Jackpot: {{vm.totalJackpotDeposits | number}} / Fee: {{vm.jackpotFee | number}}
                                 </strong>
                             </div>
-                            <ul class="list-group">
+                            <ul class="jackpot-deposits-ul">
+                                <li class="list-group-item" id="jackpot-winround">
+                                    <span data-translate="home.jackpot.newround"
+                                          translate-value-hash="{{vm.jackpot.hash}}">
+                                        A new round has begun! Round hash: <span class="text-lowercase">{{vm.jackpot.hash}}</span>
+                                    </span>
+                                </li>
                                 <li class="list-group-item" ng-repeat="jackpotDeposit in vm.allJackpotDeposits">
                                     <strong>{{jackpotDeposit.user}}</strong>
                                     <span>Deposited</span>
                                     <span class="badge">{{jackpotDeposit.amount | number}}</span>
                                 </li>
-                                <li class="list-group-item jackpot-newround">
+                                <li class="list-group-item" id="jackpot-newround">
                                     <span data-translate="home.jackpot.newround"
                                           translate-value-hash="{{vm.jackpot.hash}}">
                                         A new round has begun! Round hash: <span class="text-lowercase">{{vm.jackpot.hash}}</span>

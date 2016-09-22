@@ -54,14 +54,6 @@ public class Jackpot implements Serializable {
         this.id = id;
     }
 
-    public Jackpot total(Integer total) {
-        return this;
-    }
-
-    public Jackpot fee(Integer fee) {
-        return this;
-    }
-
     public String getHash() {
         return hash;
     }

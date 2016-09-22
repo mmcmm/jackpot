@@ -78,9 +78,9 @@ public class CreditDepositController {
             .map(u -> {
                 if (DomainUtils.userCanDeposit(u)) {
                     // todo put this on a service
-                    CreditDeposit creditDeposit = new CreditDeposit(creditDepositDTO.getDepositCredits(), PaymentMethods.G2APAY, 0.0, u);
+//                    CreditDeposit creditDeposit = new CreditDeposit(creditDepositDTO.getDepositCredits(), PaymentMethods.G2APAY, 0.0, u);
+//                    creditDepositRepository.save(creditDeposit);
                     creditDepositRepository.updateCurrentUserCreditBalance(creditDepositDTO.getDepositCredits());
-                    creditDepositRepository.save(creditDeposit);
                     return new ResponseEntity<>(new CreditDepositDTO(creditDepositDTO.getCreditBalance() + creditDepositDTO.getDepositCredits(), MIN_DEPOSIT), HttpStatus.OK);
                 }
                 return new ResponseEntity<>(new CreditDepositDTO(-1, MIN_DEPOSIT), HttpStatus.OK);

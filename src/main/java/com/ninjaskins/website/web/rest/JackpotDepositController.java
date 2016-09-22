@@ -69,11 +69,19 @@ public class JackpotDepositController {
         Optional<User> currentUser = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin());
         if (currentUser.isPresent() && DomainUtils.userCanDeposit(currentUser.get())) {
             Optional<Jackpot> currentJackpot = jackpotRepository.findFirstByOrderByIdDesc();
-            if (currentJackpot.isPresent() && DomainUtils.safeToJackpotDeposit(currentJackpot.get(), jackpotDepositDTO.getAmount(), currentUser.get().getCredits())) {
-                // create our jackpot deposit and select winner todo clean this up with optional and sockets
+            if (currentJackpot.isPresent()
+                && DomainUtils.safeToJackpotDeposit(currentJackpot.get(), jackpotDepositDTO.getAmount(), currentUser.get().getCredits())) {
+                int depositsCount = jackpotDepositRepository.countByJackpotIsCurrentJackpot(currentJackpot.get().getId());
+                if (depositsCount >= DomainConstants.JACKPOT_MIN_DEPOSITS_NR) {
+                    // check to make sure no extra deposits are handled, but we need to block on fronted too
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+
+                // todo clean this up with optional and sockets 1 here and 1 for winner
                 if (jackpotRoundService.jackpotDeposit(new JackpotDeposit(jackpotDepositDTO.getAmount(), currentUser.get(), currentJackpot.get()))) {
-                    if (jackpotDepositRepository.countByJackpotIsCurrentJackpot(currentJackpot.get().getId()) >= DomainConstants.JACKPOT_MIN_DEPOSITS_NR) {
-                       Jackpot newJackpot = jackpotRoundService.selectWinner(currentJackpot.get());
+
+                    if (depositsCount >= DomainConstants.JACKPOT_MIN_DEPOSITS_NR - 1) {
+                        Jackpot newJackpot = jackpotRoundService.selectWinner(currentJackpot.get());
                         if (newJackpot == null) {
                             log.error("Failed to select Jackpot Winner : {}", currentJackpot.get());
                             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
