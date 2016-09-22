@@ -5,9 +5,9 @@
         .module('ninjaskinsApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'JackpotDeposit', 'CreditDeposit', 'AllJackpotDeposit', 'CurrentJackpot', '$timeout'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'JackpotDeposit', 'CreditDeposit', 'AllJackpotDeposit', 'CurrentJackpot', '$timeout', 'HomeSocketService'];
 
-    function HomeController($scope, Principal, LoginService, $state, JackpotDeposit, CreditDeposit, AllJackpotDeposit, CurrentJackpot, $timeout) {
+    function HomeController($scope, Principal, LoginService, $state, JackpotDeposit, CreditDeposit, AllJackpotDeposit, CurrentJackpot, $timeout, HomeSocketService) {
         var vm = this;
 
         vm.error = null;
@@ -35,6 +35,10 @@
 
         getAccount();
         showAllJackpotDeposit();
+
+        HomeSocketService.receive().then(null, null, function(activity) {
+            showJackpotActivity(activity);
+        });
 
         function getAccount() {
             Principal.identity().then(function (account) {
@@ -98,6 +102,7 @@
 
         function runSpinMachine() {
             if (vm.allJackpotDeposits.length == (vm.jackpot.minDepositsNr)) {
+                vm.jackpotIsDrawing = true;
                 var lis = "";
                 for (var index = 0; index < vm.allJackpotDeposits.length; index++) {
                     lis += "<li>" + vm.allJackpotDeposits[index].user + "</li>"
@@ -136,6 +141,11 @@
             angular.element("#spinMachine").delay().hide();
             angular.element("#jackpot-winround").hide();
             vm.jackpotSpinMachine.destroy();
+            vm.jackpotIsDrawing = false;
+        }
+
+        function showJackpotActivity(activity) {
+            console.log(activity);
         }
     }
 })();

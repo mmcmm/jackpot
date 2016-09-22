@@ -26,7 +26,15 @@
                     $translatePartialLoader.addPart('home');
                     return $translate.refresh();
                 }]
-            }
+            },
+            onEnter: ['HomeSocketService', function(HomeSocketService) {
+                HomeSocketService.connect();
+                HomeSocketService.subscribe();
+            }],
+            onExit: ['HomeSocketService', function(HomeSocketService) {
+                HomeSocketService.unsubscribe();
+                HomeSocketService.disconnect();
+            }]
         });
     }
 })();
