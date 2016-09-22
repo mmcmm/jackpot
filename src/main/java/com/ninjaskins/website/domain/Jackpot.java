@@ -89,10 +89,6 @@ public class Jackpot implements Serializable {
         return this;
     }
 
-    public Jackpot isDrawing(Boolean isDrawing) {
-        return this;
-    }
-
     public User getWinner() {
         return winner;
     }
