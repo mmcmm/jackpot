@@ -76,7 +76,7 @@
                                 <tr ng-repeat="jackpotDepositUser in vm.allJackpotDepositsUsers">
                                     <td>{{jackpotDepositUser.user}}</td>
                                     <td>{{jackpotDepositUser.amount | number}}</td>
-                                    <td>{{jackpotDepositUser.chance | number}}%</td>
+                                    <td>{{jackpotDepositUser.chance | number:2}}%</td>
                                 </tr>
                                 </tbody>
                             </table>

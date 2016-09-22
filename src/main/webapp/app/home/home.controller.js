@@ -85,8 +85,7 @@
                 }
                 for (var user2 in vm.allJackpotDepositsUsers) {
                     if (vm.allJackpotDepositsUsers.hasOwnProperty(user2)) {
-                        vm.allJackpotDepositsUsers[user2].chance =
-                            (vm.allJackpotDepositsUsers[user2].amount / vm.totalJackpotDeposits).toFixed(4) * 100;
+                        vm.allJackpotDepositsUsers[user2].chance = ((vm.allJackpotDepositsUsers[user2].amount / vm.totalJackpotDeposits) * 100);
                     }
                 }
                 vm.jackpotFee = Math.floor(vm.totalJackpotDeposits * vm.jackpot.percentFee);
