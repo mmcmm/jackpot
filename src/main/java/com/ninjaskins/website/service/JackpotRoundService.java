@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Future;
 
 @Service
@@ -33,14 +34,13 @@ public class JackpotRoundService {
     @Inject
     private JackpotRepository jackpotRepository;
 
-    public boolean jackpotDeposit(JackpotDeposit jackpotDeposit) {
+    public JackpotDeposit jackpotDeposit(JackpotDeposit jackpotDeposit) {
         log.debug("Depositing into the current jackpot ", jackpotDeposit);
         if (jackpotDeposit.getAmount() <= jackpotDepositRepository.getCurrentUserCreditBalance()) {
             jackpotDepositRepository.takeFromCurrentUserCreditBalance(jackpotDeposit.getAmount());
-            JackpotDeposit result = jackpotDepositRepository.save(jackpotDeposit);
-            return (result.getId() != null);
+            return jackpotDepositRepository.save(jackpotDeposit);
         }
-        return false;
+        return null;
     }
 
     public Jackpot selectWinner(Jackpot currentJackpot) {

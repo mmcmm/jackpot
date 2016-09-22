@@ -5,9 +5,9 @@
         .module('ninjaskinsApp')
         .factory('AuthServerProvider', AuthServerProvider);
 
-    AuthServerProvider.$inject = ['$http', '$localStorage' , 'JhiTrackerService'];
+    AuthServerProvider.$inject = ['$http', '$localStorage'];
 
-    function AuthServerProvider ($http, $localStorage , JhiTrackerService) {
+    function AuthServerProvider ($http, $localStorage) {
         var service = {
             getToken: getToken,
             hasValidToken: hasValidToken,
@@ -42,9 +42,8 @@
         }
 
         function logout () {
-            JhiTrackerService.disconnect();
 
-            
+
             // logout from the server
             $http.post('api/logout').success(function (response) {
                 delete $localStorage.authenticationToken;
@@ -52,7 +51,7 @@
                 $http.get('api/account');
                 return response;
             });
-            
+
         }
     }
 })();
