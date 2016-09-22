@@ -5,6 +5,7 @@
         "menu": {
             "home": "首页",
             "jackpot": "大奖",
+            "help": "帮帮我",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
