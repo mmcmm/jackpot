@@ -22,6 +22,9 @@ public class CurrentJackpotDTO implements Serializable {
     private int minDepositsNr = DomainConstants.JACKPOT_MIN_DEPOSITS_NR;
 
     @NotNull
+    private int delayAfterWinner = DomainConstants.JACKPOT_DELAY_AFTER_WINNER;
+
+    @NotNull
     private float percentFee = DomainConstants.JACKPOT_PERCENT_FEE;
 
     @Pattern(regexp = Constants.LOGIN_REGEX)
@@ -67,6 +70,14 @@ public class CurrentJackpotDTO implements Serializable {
         this.percentFee = percentFee;
     }
 
+    public int getDelayAfterWinner() {
+        return delayAfterWinner;
+    }
+
+    public void setDelayAfterWinner(int delayAfterWinner) {
+        this.delayAfterWinner = delayAfterWinner;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -95,6 +106,7 @@ public class CurrentJackpotDTO implements Serializable {
             "winner='" + winner + "'" +
             "minDepositsNr='" + minDepositsNr + "'" +
             "percentFee='" + percentFee + "'" +
+            "delayAfterWinner='" + delayAfterWinner + "'" +
             '}';
     }
 }

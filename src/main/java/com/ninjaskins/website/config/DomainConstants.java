@@ -12,7 +12,9 @@ public final class DomainConstants {
     // our jackpot fee
     public static final float JACKPOT_PERCENT_FEE = 0.05f;
     // seconds delay between games
-    public static final int JACKPOT_DELAY_BETWEEN_GAMES = 5;
+    public static final int JACKPOT_DELAY_SPIN_WINNER = 10;
+    // seconds delay after we get winner
+    public static final int JACKPOT_DELAY_AFTER_WINNER = 5;
 
     private DomainConstants() {
     }

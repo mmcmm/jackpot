@@ -413,3 +413,27 @@ Social Buttons
 #jackpot-winround {
     display: none;
 }
+
+#spinMachine {
+    width: 100%;
+    height: 67px;
+    overflow: hidden;
+    display: none;  /* inline-block */
+    text-align: left;
+}
+
+#spinMachine li {
+    text-align: center;
+    font-size: 70px;
+    list-style: none;
+    line-height: 80px;
+}
+
+#spinMachine li {
+    -webkit-filter: blur(1px) !important;
+    filter: blur(1px) !important;
+}
+
+#jackpot-progress-bar {
+    margin-top: 20px;
+}

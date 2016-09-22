@@ -15,6 +15,7 @@
             "chance": "Chance",
             "totaljackpot": "Jackpot: {{total | number}} / Fee: {{fee | number}}",
             "newround": "A new round has begun! Round hash:  <span class=\"text-lowercase\">{{hash}}</span>",
+            "winner": "Winner: ",
             "fairgame": "Fair Game"
         }
     }

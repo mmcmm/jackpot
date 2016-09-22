@@ -47,12 +47,14 @@ public class JackpotRoundService {
         try {
             List<JackpotDeposit> jackpotDeposits = jackpotDepositRepository.findByJackpotIsCurrentJackpot(currentJackpot.getId());
             Future<User> winner = getWinnerUser(jackpotDeposits, currentJackpot.getRandomNumber());
-            DomainUtils.threadSleep(DomainConstants.JACKPOT_DELAY_BETWEEN_GAMES);
+            DomainUtils.threadSleep(DomainConstants.JACKPOT_DELAY_SPIN_WINNER);
             assert winner != null;
             while (!winner.isDone()) Thread.sleep(10);
             currentJackpot.setWinner(winner.get());
             jackpotRepository.addJackpotPrizeToWinnerUserCreditBalance(DomainUtils.CalculateJackpotWinning(jackpotDeposits), winner.get().getLogin());
             jackpotRepository.save(currentJackpot);
+            // we wait some more
+            DomainUtils.threadSleep(DomainConstants.JACKPOT_DELAY_AFTER_WINNER);
             return addTheNextJackpot();  // we insert a new jackpot
         } catch (Exception ex) {
             log.error("Jackpot winner select error!", ex.getMessage());

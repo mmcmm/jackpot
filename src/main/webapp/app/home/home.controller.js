@@ -5,9 +5,9 @@
         .module('ninjaskinsApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'JackpotDeposit', 'CreditDeposit', 'AllJackpotDeposit', 'CurrentJackpot'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'JackpotDeposit', 'CreditDeposit', 'AllJackpotDeposit', 'CurrentJackpot', ' $timeout'];
 
-    function HomeController($scope, Principal, LoginService, $state, JackpotDeposit, CreditDeposit, AllJackpotDeposit, CurrentJackpot) {
+    function HomeController($scope, Principal, LoginService, $state, JackpotDeposit, CreditDeposit, AllJackpotDeposit, CurrentJackpot, $timeout) {
         var vm = this;
 
         vm.error = null;
@@ -21,6 +21,8 @@
         vm.jackpotFee = null;
         vm.jackpotProgressStyle = null;
         vm.jackpotIsDrawing = null;
+        vm.jackpotWinner = null;
+        vm.jackpotSpinMachine = null;
         vm.account = null;
         vm.success = null;
         vm.jackpotRoundHash = null;
@@ -70,6 +72,7 @@
         function showAllJackpotDeposit() {
             vm.allJackpotDeposits = AllJackpotDeposit.get(null, function () {
                 calculateJackpotDepositsData();
+                runSpinMachine();
             });
         }
 
@@ -91,6 +94,48 @@
                 vm.jackpotFee = Math.floor(vm.totalJackpotDeposits * vm.jackpot.percentFee);
                 vm.totalJackpotDeposits -= vm.jackpotFee;
             }
+        }
+
+        function runSpinMachine() {
+            if (vm.allJackpotDeposits.length == (vm.jackpot.minDepositsNr)) {
+                var lis = "";
+                for (var index = 0; index < vm.allJackpotDeposits.length; index++) {
+                    lis += "<li>" + vm.allJackpotDeposits[index].user + "</li>"
+                }
+                angular.element("#jackpot-progress-bar").hide();
+                angular.element("#spinMachine").append(lis).css("display", "inline-block");
+                vm.jackpotSpinMachine = angular.element("#spinMachine").slotMachine({
+                    active: 0,
+                    delay: vm.allJackpotDeposits.length * 250
+                });
+                vm.jackpotSpinMachine.shuffle();
+            }
+        }
+
+        function stopSpinMachine(winner) {
+            if (vm.jackpotSpinMachine.running) { // we make sure machine running
+                vm.jackpotWinner = winner;
+                var winnerIndex = 0;
+                for (var index = 0; index < vm.allJackpotDeposits.length; index++) {
+                    if (vm.allJackpotDeposits[index].user == winner) {
+                        winnerIndex = index;
+                    }
+                }
+                vm.jackpotSpinMachine.setRandomize(function () {
+                        return winnerIndex;
+                    }
+                );
+                vm.jackpotSpinMachine.stop();
+                angular.element("#jackpot-winround").show();
+                $timeout(clearJackpotRound, vm.jackpot.delayAfterWinner * 1000);
+            }
+        }
+
+        function clearJackpotRound() {
+            vm.allJackpotDeposits = [];
+            angular.element("#spinMachine").delay().hide();
+            angular.element("#jackpot-winround").hide();
+            vm.jackpotSpinMachine.destroy();
         }
     }
 })();

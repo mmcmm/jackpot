@@ -84,32 +84,41 @@
                     </div>
                     <div class="col-xs-7 col-md-offset-1">
                         <div id="jackpot-deposits">
-                            <uib-progressbar min="0" max="vm.jackpot.minDepositsNr" value="vm.allJackpotDeposits.length" class="progress-striped active" type="success">
-                                <span>{{vm.allJackpotDeposits.length}}/{{vm.jackpot.minDepositsNr}}</span>
-                            </uib-progressbar>
-                            <div class="alert alert-info">
-                                <strong data-translate="home.jackpot.totaljackpot"
-                                        translate-values="{total: '{{vm.totalJackpotDeposits | number}}', fee: '{{vm.jackpotFee | number}}'}">
-                                    Jackpot: {{vm.totalJackpotDeposits | number}} / Fee: {{vm.jackpotFee | number}}
-                                </strong>
+                            <div id="jackpot-deposits-head">
+                                <div class="alert alert-info">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <strong data-translate="home.jackpot.totaljackpot"
+                                                    translate-values="{total: '{{vm.totalJackpotDeposits | number}}', fee: '{{vm.jackpotFee | number}}'}">
+                                                Jackpot: {{vm.totalJackpotDeposits | number}} / Fee: {{vm.jackpotFee |
+                                                number}}
+                                            </strong>
+                                            <strong id="jackpot-winround" data-translate="home.jackpot.winner" translate-value-hash="{{vm.jackpotWinner}}">
+                                                Winner: {{vm.jackpotWinner}}
+                                            </strong>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <ul id="spinMachine"></ul>
+                                        </div>
+                                    </div>
+                                    <uib-progressbar id="jackpot-progress-bar" min="0" max="vm.jackpot.minDepositsNr"
+                                                     value="vm.allJackpotDeposits.length" class="progress-striped active"
+                                                     type="success">
+                                        <span>{{vm.allJackpotDeposits.length}}/{{vm.jackpot.minDepositsNr}}</span>
+                                    </uib-progressbar>
+                                </div>
                             </div>
                             <ul class="list-group" id="jackpot-deposits-ul">
-                                <li class="list-group-item" id="jackpot-winround">
-                                    <span data-translate="home.jackpot.newround"
-                                          translate-value-hash="{{vm.jackpot.hash}}">
-                                        A new round has begun! Round hash: <span class="text-lowercase">{{vm.jackpot.hash}}</span>
-                                    </span>
-                                </li>
                                 <li class="list-group-item" ng-repeat="jackpotDeposit in vm.allJackpotDeposits">
                                     <strong>{{jackpotDeposit.user}}</strong>
                                     <span>Deposited</span>
                                     <span class="badge">{{jackpotDeposit.amount | number}}</span>
                                 </li>
                                 <li class="list-group-item" id="jackpot-newround">
-                                    <span data-translate="home.jackpot.newround"
-                                          translate-value-hash="{{vm.jackpot.hash}}">
+                                    <span data-translate="home.jackpot.newround" translate-value-hash="{{vm.jackpot.hash}}">
                                         A new round has begun! Round hash: <span class="text-lowercase">{{vm.jackpot.hash}}</span>
                                     </span>
+                                    <a data-translate="home.jackpot.fairgame" ui-sref="help" class="fair-game">Fair Game</a>
                                 </li>
                             </ul>
                         </div>
