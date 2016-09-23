@@ -18,11 +18,11 @@ public class WebsocketSecurityConfiguration extends AbstractSecurityWebSocketMes
             // (i.e. cannot send messages directly to /topic/)
             // (i.e. cannot subscribe to /topic/messages/* to get messages sent to
             // /topic/messages-user<id>)
-            .simpDestMatchers("/topic/**").authenticated()
+            .simpDestMatchers("/topic/**").authenticated();
             // message types other than MESSAGE and SUBSCRIBE
-            .simpTypeMatchers(SimpMessageType.MESSAGE, SimpMessageType.SUBSCRIBE).denyAll()
+//            .simpTypeMatchers(SimpMessageType.MESSAGE, SimpMessageType.SUBSCRIBE).denyAll()
             // catch all
-            .anyMessage().denyAll();
+//            .anyMessage().denyAll();  // FIXME: 9/23/16
     }
 
     /**
