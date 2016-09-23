@@ -52,10 +52,7 @@ public class JackpotRoundService {
             while (!winner.isDone()) Thread.sleep(10);
             currentJackpot.setWinner(winner.get());
             jackpotRepository.addJackpotPrizeToWinnerUserCreditBalance(DomainUtils.CalculateJackpotWinning(jackpotDeposits), winner.get().getLogin());
-            jackpotRepository.save(currentJackpot);
-            // we wait some more
-            DomainUtils.threadSleep(DomainConstants.JACKPOT_DELAY_AFTER_WINNER);
-            return addTheNextJackpot();  // we insert a new jackpot
+            return jackpotRepository.save(currentJackpot);
         } catch (Exception ex) {
             log.error("Jackpot winner select error!", ex.getMessage());
             return null;
@@ -87,7 +84,7 @@ public class JackpotRoundService {
         return null;
     }
 
-    Jackpot addTheNextJackpot() {
+    public Jackpot addTheNextJackpot() {
         double randomNumber = DomainUtils.getSecureRandomNumber();
         Jackpot jackpot = new Jackpot();
         jackpot.setHash(DomainUtils.getSHA256Hash(String.valueOf(randomNumber)));

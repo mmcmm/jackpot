@@ -19,8 +19,7 @@
                                 Please <a class="alert-link" href="" ng-click="vm.login()">sign in</a>!
                             </span>
                             <span data-translate="global.messages.info.register" translate-compile>
-                                You don't have an account yet? <a class="alert-link"
-                                                          ui-sref="register">Register a new account</a>
+                                You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
                              </span>
                         </div>
                         <form name="form" role="form" id="jackpot-deposit-form" novalidate ng-submit="vm.save()"
@@ -114,9 +113,9 @@
                                     <span>Deposited</span>
                                     <span class="badge">{{jackpotDeposit.amount | number}}</span>
                                 </li>
-                                <li class="list-group-item" id="jackpot-newround">
+                                <li class="list-group-item truncate" id="jackpot-newround">
                                     <span data-translate="home.jackpot.newround" translate-value-hash="{{vm.jackpot.hash}}">
-                                        A new round has begun! Round hash: <span class="text-lowercase">{{vm.jackpot.hash}}</span>
+                                        A new round has begun! Round hash: <small class="text-lowercase">{{vm.jackpot.hash}}</small>
                                     </span>
                                     <a data-translate="home.jackpot.fairgame" ui-sref="help" class="fair-game">Fair Game</a>
                                 </li>

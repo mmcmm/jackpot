@@ -64,7 +64,6 @@
             vm.isSaving = false;
             vm.error = null;
             vm.success = 'OK';
-            vm.creditDeposit.creditBalance -= vm.jackpotDeposit.amount;
         }
 
         function onSaveError() {
@@ -82,6 +81,13 @@
 
         function calculateJackpotDepositsData() {
             if (vm.allJackpotDeposits.length) {
+                // we need to rested all, for sockets
+                vm.totalJackpotDeposits = 0;
+                for (var user0 in vm.allJackpotDepositsUsers) {
+                    if (vm.allJackpotDepositsUsers.hasOwnProperty(user0)) {
+                        vm.allJackpotDepositsUsers[user0].amount = 0;
+                    }
+                }
                 for (var index = 0; index < vm.allJackpotDeposits.length; index++) {
                     vm.totalJackpotDeposits += vm.allJackpotDeposits[index].amount;
                     var user = vm.allJackpotDeposits[index].user;
@@ -132,7 +138,6 @@
                 );
                 vm.jackpotSpinMachine.stop();
                 angular.element("#jackpot-winround").show();
-                $timeout(clearJackpotRound, vm.jackpot.delayAfterWinner * 1000);
             }
         }
 
@@ -142,9 +147,32 @@
             angular.element("#jackpot-winround").hide();
             vm.jackpotSpinMachine.destroy();
             vm.jackpotIsDrawing = false;
+            if (vm.isAuthenticated() && vm.account.login == vm.jackpotWinner) {
+                vm.creditDeposit.creditBalance += vm.totalJackpotDeposits;
+            }
+        }
+
+        function addNewJackpotDeposit(jackpotDeposit) {
+            vm.allJackpotDeposits.unshift(jackpotDeposit);
+            calculateJackpotDepositsData();
+            if (vm.isAuthenticated() && vm.account.login == jackpotDeposit.user) {
+                vm.creditDeposit.creditBalance -= jackpotDeposit.amount;
+            }
         }
 
         function showJackpotActivity(activity) {
+            switch (activity.type) {
+                case "JACKPOT_DEPOSIT":
+                    addNewJackpotDeposit(activity.object);
+                    runSpinMachine();
+                    break;
+                case "JACKPOT_WINNER":
+                    stopSpinMachine(activity.object.winner);
+                    $timeout(clearJackpotRound, vm.jackpot.delayAfterWinner * 1000);
+                    break;
+                default:
+                    break;
+            }
             console.log(activity);
         }
     }
